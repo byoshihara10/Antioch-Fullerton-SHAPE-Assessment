@@ -1,0 +1,1008 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>S.H.A.P.E. Assessment</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+/* Antioch Fullerton branding: Helvetica, black and white, Cormorant Garamond for Scripture. Layout: an arched stained-glass window of the 16 gifts anchors the page; each SHAPE letter is a tab; results recolor the window. */
+:root{
+  --bg:#f5f4f1; --surface:#ffffff; --sunk:#ebeae6; --ink:#141414; --muted:#5e5e5a; --line:#d8d6d0;
+  --lead:#141414; --accent:#141414; --accent-ink:#ffffff; --accent-soft:#ebeae6;
+  --ruby:#b3263e; --amber:#c47f12; --emerald:#1d8a5a; --cobalt:#2a4fb8; --violet:#6b3fa8; --teal:#14808a;
+  --glass-off:#cfcdc7;
+  --f-display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-body:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-mono:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-serif:"Cormorant Garamond","Times New Roman",Times,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101010; --surface:#1a1a1a; --sunk:#242424; --ink:#f2f1ee; --muted:#a3a29d; --line:#333331;
+  --lead:#000000; --accent:#f2f1ee; --accent-ink:#141414; --accent-soft:#2a2a28;
+  --ruby:#e0566c; --amber:#eaa93a; --emerald:#3fbf86; --cobalt:#6d8ef0; --violet:#a27be0; --teal:#3bb6bf;
+  --glass-off:#2e2e2c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101010; --surface:#1a1a1a; --sunk:#242424; --ink:#f2f1ee; --muted:#a3a29d; --line:#333331;
+  --lead:#000000; --accent:#f2f1ee; --accent-ink:#141414; --accent-soft:#2a2a28;
+  --ruby:#e0566c; --amber:#eaa93a; --emerald:#3fbf86; --cobalt:#6d8ef0; --violet:#a27be0; --teal:#3bb6bf;
+  --glass-off:#2e2e2c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,6vw,3rem)}
+h2{font-size:clamp(1.5rem,4vw,2rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+.muted{color:var(--muted)}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* tabs */
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding-block:10px;border-bottom:1px solid var(--line);margin-bottom:28px;scrollbar-width:none}
+nav.tabs button{flex:0 0 auto;border:1px solid transparent;background:none;border-radius:999px;padding:6px 12px;font-size:.9rem;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:6px}
+nav.tabs button .l{font-family:var(--f-display);font-size:1.05rem;color:var(--ink)}
+nav.tabs button[aria-selected="true"]{background:var(--surface);border-color:var(--line);color:var(--ink)}
+nav.tabs .dot{width:7px;height:7px;border-radius:50%;background:var(--line)}
+nav.tabs .dot.done{background:var(--emerald)}
+nav.tabs .dot.part{background:var(--amber)}
+
+section[data-view]{display:flex;flex-direction:column;gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:9px 16px;font-weight:600;font-size:.95rem}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none}
+.btn:disabled{opacity:.45;cursor:default}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:center}
+@media (max-width:680px){.hero{grid-template-columns:1fr}}
+.verse{font-family:var(--f-serif);font-size:1.3rem;font-weight:500;line-height:1.45;border-left:2px solid var(--line);padding-left:14px}
+.acro{display:grid;gap:8px}
+.acro button{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.acro .L{font-family:var(--f-display);font-size:1.8rem;line-height:1;color:var(--accent)}
+.acro .t{font-weight:600}
+.acro .q{font-size:.88rem;color:var(--muted)}
+.acro .st{font-size:.78rem;color:var(--muted);white-space:nowrap}
+
+/* window */
+.window{background:var(--lead);padding:8px;border-radius:50% 50% 10px 10px/26% 26% 10px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;aspect-ratio:4/5.2;max-width:100%;position:relative;overflow:hidden}
+.window.wide{grid-template-columns:repeat(7,1fr);aspect-ratio:7/5.2;border-radius:50% 50% 10px 10px/30% 30% 10px 10px}
+@media (max-width:560px){.window.wide{grid-template-columns:repeat(4,1fr);aspect-ratio:4/6.3;border-radius:50% 50% 10px 10px/22% 22% 10px 10px}}
+.pane{position:relative;border-radius:3px;background:var(--glass-off);display:flex;align-items:flex-end;padding:4px;min-width:0;overflow:hidden;transition:filter .3s}
+.pane::before{content:"";position:absolute;inset:0;background:var(--c);opacity:var(--o,0);transition:opacity .6s}
+.pane::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 30% 20%,rgba(255,255,255,.35),transparent 60%);pointer-events:none}
+.pane span{position:relative;z-index:1;font-size:.62rem;line-height:1.1;color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.6);overflow-wrap:anywhere}
+.pane.top{outline:2px solid #fff;outline-offset:-2px;z-index:2}
+.pane .rk{position:absolute;top:3px;right:4px;font-family:var(--f-display);font-size:.9rem}
+.window.hide-labels .pane span{display:none}
+
+/* gifts test */
+.progress{height:6px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.q-item{display:grid;gap:10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.q-item:last-child{border-bottom:0}
+.q-item .n{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);margin-right:8px}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;max-width:520px}
+.scale button{border:1px solid var(--line);background:var(--bg);border-radius:6px;min-height:52px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.scale button b{font-family:var(--f-mono);font-size:.95rem;font-weight:500}
+.scale button small{font-size:.66rem;line-height:1.15;color:var(--muted);text-align:center}
+.scale button[aria-checked="true"] small{color:inherit}
+.scale button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.scale-legend{display:flex;justify-content:space-between;max-width:440px;font-size:.72rem;color:var(--muted)}
+.pager{display:flex;gap:6px;flex-wrap:wrap}
+.pager button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px;font-size:.85rem}
+.pager button[aria-current="true"]{border-color:var(--accent);color:var(--accent);font-weight:600}
+.pager button small{font-family:var(--f-mono);color:var(--muted)}
+
+/* checklists */
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px}
+.checks.wide{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.chk{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer;font-size:.93rem;line-height:1.35}
+.chk input{margin-top:3px;accent-color:var(--accent)}
+.chk:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.chk small{display:block;color:var(--muted);font-size:.8rem}
+.other{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+input[type=text],textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0}
+.other input{flex:1 1 200px}
+.picks{display:flex;flex-wrap:wrap;gap:6px}
+.pick{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:.88rem;display:flex;gap:6px;align-items:center}
+.pick b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:.75rem;font-family:var(--f-mono)}
+.pick[aria-pressed="true"]{border-color:var(--accent)}
+.empty{font-size:.9rem;color:var(--muted);font-style:italic}
+
+/* personality */
+.pers{display:grid;gap:14px}
+.pq{display:grid;gap:6px}
+.pq .poles{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;font-size:.9rem}
+.pq .poles span:last-child{text-align:right}
+.seg{display:grid;grid-template-columns:repeat(4,38px);gap:4px}
+.seg button{height:34px;border:1px solid var(--line);background:var(--bg);border-radius:6px;font-family:var(--f-mono);padding:0}
+.seg button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+@media (max-width:520px){.pq .poles{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:8px}.pq .poles span:first-child{grid-column:1;grid-row:1;text-align:left}.pq .poles span:last-child{grid-column:2;grid-row:1;text-align:right}.pq .seg{grid-column:1/-1;grid-row:2;justify-self:stretch;grid-template-columns:repeat(4,minmax(0,1fr))}.meter{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.meter .bar{grid-column:1/-1;grid-row:2}.meter>span:last-child{text-align:right}}
+.meter{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:.85rem}
+.meter .bar{height:8px;background:var(--sunk);border-radius:99px;position:relative}
+.meter .bar i{position:absolute;top:-4px;width:16px;height:16px;border-radius:50%;background:var(--accent);transform:translateX(-50%);border:2px solid var(--surface)}
+.meter .bar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--muted)}
+
+/* results */
+.res-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+@media (max-width:640px){.res-grid{grid-template-columns:1fr}}
+.toplist{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.toplist li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.toplist li:last-child{border-bottom:0}
+.toplist .sw{width:34px;height:34px;border-radius:4px;border:3px solid var(--lead);display:grid;place-items:center;font-family:var(--f-display);color:#fff}
+.toplist .ref{font-size:.8rem;color:var(--muted)}
+.toplist .sc{font-family:var(--f-mono);font-size:.9rem}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+td .mini{display:inline-block;height:6px;border-radius:3px;background:var(--accent);vertical-align:middle}
+.ol{margin:0;padding-left:1.3em}
+.kv{display:grid;gap:4px}
+.kv .k{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.note{font-size:.85rem;color:var(--muted)}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.9rem}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:18px 20px}
+@media (max-width:640px){.about{grid-template-columns:1fr}}
+.about .q{font-family:var(--f-display);font-size:1.15rem;line-height:1.35;grid-column:1/-1}
+.about h4{margin:0 0 6px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.about p,.about li{font-size:.93rem}
+.about ul,.about ol{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.about .vs{font-size:.82rem;color:var(--muted);grid-column:1/-1}
+.frame{display:grid;gap:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:22px}
+.frame-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin:0;padding:0;list-style:none}
+@media (max-width:640px){.frame-list{grid-template-columns:1fr}}
+.frame-list li{display:grid;gap:4px}
+.frame-list strong{font-family:var(--f-display);font-weight:700;font-size:1.1rem}
+.frame-list p{font-size:.93rem;color:var(--muted)}
+.frame-list .ref{font-size:.8rem;color:var(--muted);font-style:italic}
+.catrow{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr) 3rem;gap:10px;align-items:center;font-size:.88rem}
+.catrow .mono{text-align:right}
+.cbar{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.cbar span{display:block;height:100%;border-radius:99px}
+@media (max-width:520px){.catrow{grid-template-columns:minmax(0,1fr) 3rem}.catrow .cbar{grid-column:1/-1;grid-row:2}}
+.watch{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--sunk);display:grid;gap:4px;font-size:.85rem;line-height:1.45}
+.watch strong{color:var(--ink)}
+.five-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.five-grid>div{border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:grid;gap:4px;font-size:.88rem}
+.five-grid>div.on{border-color:var(--accent);background:var(--accent-soft)}
+.mbopts{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:620px}
+.mbopts button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:10px 12px;text-align:left;font-size:.93rem;line-height:1.35}
+.mbopts button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.mbbar{display:grid;grid-template-columns:2.6rem minmax(0,1fr) minmax(0,1fr) 2.6rem;gap:6px;align-items:center;font-size:.85rem;color:var(--muted)}
+.mbbar .w{color:var(--ink);font-weight:600}
+@media (max-width:520px){.mbopts{grid-template-columns:1fr}}
+.uio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.uio>div{background:var(--sunk);border-radius:8px;padding:10px 12px;display:grid;gap:3px;align-content:start}
+.uio .k{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+.uio p{font-size:.92rem;margin-top:4px}
+@media (max-width:640px){.uio{grid-template-columns:1fr}}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:.9rem;z-index:20}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="app"></main>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const GIFTS=[
+["Leadership","Casts vision and motivates people to work together toward God's purposes.","Romans 12:8; Hebrews 13:17",[6,16,27,43,65],"Leadership","leading a Lifegroup or ministry team, casting vision for a project"],
+["Administration","Plans, organizes and coordinates people and resources so a ministry reaches its God-given goals.","1 Corinthians 12:28; Luke 14:28–30",[1,17,31,47,59],"Serving","event and retreat coordination, ministry operations, organizing volunteer teams"],
+["Teaching","Explains and applies Scripture clearly so that listeners understand and change.","Romans 12:7; Ephesians 4:11–16",[2,18,33,61,73],"Speaking","teaching a class or Lifegroup, Bible studies, training other teachers"],
+["Knowledge","Searches Scripture deeply and brings its truth to bear on situations in the church.","1 Corinthians 12:8; Colossians 2:2–3",[9,24,39,68,79],"Speaking","Bible study preparation, curriculum research, answering hard questions"],
+["Wisdom","Applies spiritual truth to make sound, practical decisions in real situations.","James 3:13–18; 1 Kings 3:16–28",[3,19,48,62,74],"Speaking","counsel and advisory roles, mediating conflict, guiding decisions"],
+["Prophecy","Speaks God's truth in a timely way for correction, encouragement and building up.","1 Corinthians 14:1–5; Romans 12:6",[10,25,40,54,69],"Speaking","prophetic prayer, speaking timely encouragement under leadership's oversight"],
+["Discernment","Distinguishes truth from error and senses whether a word or behavior is from God.","1 John 4:1–6; 1 Corinthians 12:10",[11,26,41,55,70],"Sign","prayer ministry, leadership counsel, evaluating teaching and new ideas"],
+["Exhortation","Encourages and strengthens others, urging them toward faithfulness and growth.","Romans 12:8; Hebrews 3:13",[20,34,49,63,75],"Speaking","follow-up with newcomers, discipleship, cards and calls to people who are struggling"],
+["Shepherding","Takes long-term responsibility for the spiritual care and growth of a group.","John 10:1–16; 1 Peter 5:1–4",[4,21,35,50,76],"Leadership","Lifegroup leadership, small-group shepherding, long-term mentoring"],
+["Faith","Trusts God's power and promises with a confidence that obstacles don't shake.","Hebrews 11; Romans 4:18–21",[12,28,42,56,80],"Sign","prayer teams, pioneering hard projects, standing with people in crisis"],
+["Evangelism","Communicates the gospel clearly so people respond in faith and move toward discipleship.","Ephesians 4:11; Acts 8:26–40",[5,36,51,64,77],"Speaking","outreach events, Alpha-style courses, relationship-based witnessing"],
+["Apostleship","Pioneers new churches and ministries, often across cultures and to unreached places.","Ephesians 4:11–16; Acts 13:2–5",[13,29,44,57,71],"Leadership","church planting teams, short-term missions, cross-cultural outreach"],
+["Service","Meets practical needs gladly so others are freed to do what God called them to.","Galatians 6:2; Romans 12:7",[14,30,46,58,72],"Serving","setup and teardown, tech and production, kitchen and facilities teams"],
+["Mercy","Puts compassion into action for people who are hurting or forgotten.","Luke 10:30–37; Matthew 25:34–40",[7,22,37,52,66],"Serving","care ministry, hospital and prison visits, serving people with special needs"],
+["Giving","Contributes resources generously and cheerfully to God's work.","2 Corinthians 9:6–15; Mark 12:41–44",[8,23,38,53,67],"Serving","generosity initiatives, benevolence, quietly funding needs as they arise"],
+["Hospitality","Creates a warm welcome and a safe place where people feel valued and connected.","1 Peter 4:9–10; Hebrews 13:1–2",[15,32,45,60,78],"Serving","greeting, hosting a Lifegroup, newcomer meals, welcome teams"]];
+const NQ=80,PER=20,NP=4,MAXS=25;
+const CAUTION={Leadership:"Driving people toward a goal without listening, or leaning on your own vision instead of seeking God's.",Administration:"Valuing efficiency over people, or holding control too tightly.",Teaching:"Pride in what you know, or teaching truth without love and application.",Knowledge:"Collecting information without applying it, or becoming argumentative.",Wisdom:"Giving advice no one asked for, or trusting your own judgment over prayer.",Prophecy:"Speaking too quickly or harshly, without love, humility or accountability to leaders.",Discernment:"Becoming suspicious or critical of people, or sharing impressions without grace.",Exhortation:"Pushing people too hard, or offering quick fixes instead of listening.",Shepherding:"Carrying people's burdens alone, or becoming possessive of \u201cyour\u201d people.",Faith:"Impatience with people who struggle to trust, or mistaking presumption for faith.",Evangelism:"Treating people as projects, or neglecting discipleship after someone comes to faith.",Apostleship:"Starting new things and moving on before they're established, or impatience with structure.",Service:"Burning out from never saying no, or resenting others who don't pitch in.",Mercy:"Enabling unhealthy patterns, or absorbing others' pain until you're depleted.",Giving:"Giving to be noticed or to control outcomes, or neglecting wise stewardship.",Hospitality:"People-pleasing, or neglecting your own household and rest."};
+const GIFTX={
+Leadership:["The God-given ability to cast vision and motivate people to work together toward God's purposes. Leaders see where a group needs to go and help others get there willingly.","\u201cIf it is to lead, do it diligently.\u201d Romans 12:8","Without direction, good people and good intentions scatter. Leaders help the body move together toward what God is doing.","Lead a Lifegroup or ministry team, set goals for a project, coach new leaders, or rally your trip team around a shared mission."],
+Administration:["The ability to organize people, tasks and resources so a ministry runs well and reaches its goals. It turns vision into workable plans.","\u201cEverything should be done in a fitting and orderly way.\u201d 1 Corinthians 14:40","Ministry needs structure to last. Administrators free others to serve by making sure the right people, plans and resources are in place.","Coordinate events and retreats, build schedules and volunteer rosters, manage budgets, or plan trip logistics and itineraries."],
+Teaching:["The ability to explain God's Word clearly and apply it so people understand and grow.","\u201cTeach and admonish one another with all wisdom.\u201d Colossians 3:16","The church grows when God's Word is understood and lived out. Teachers ground believers in truth so they aren't tossed around by every new idea (Ephesians 4:14).","Lead a Bible study, teach a class or Lifegroup, disciple a newer believer, or lead devotions on a trip."],
+Knowledge:["A Spirit-given understanding of God's truth, with a drive to study and organize insight that serves the church.","In Christ \u201care hidden all the treasures of wisdom and knowledge.\u201d Colossians 2:3","Knowledge brings depth and accuracy to the church's understanding of God, and helps guard against shallow or mistaken thinking.","Prepare study guides and curriculum, research the questions people are asking, or brief your team on a place's culture and history before you go."],
+Wisdom:["The ability to apply spiritual truth to real situations and see the best path forward.","\u201cIf any of you lacks wisdom, you should ask God.\u201d James 1:5","Wisdom helps the body make good decisions and apply truth to real life, especially when the path isn't clear.","Serve on a planning or leadership team, mentor others through big decisions, help mediate conflict, or advise your team when plans change."],
+Prophecy:["The ability to sense and speak God's timely word to build up, encourage and comfort others.","Prophecy speaks \u201cfor their strengthening, encouraging and comfort.\u201d 1 Corinthians 14:3","Prophecy keeps the church attentive to what God is saying now, bringing strength, encouragement and comfort at the right moment.","Join a prayer team, pray for people after services, and share encouragement you sense from God, always under the oversight of leaders."],
+Discernment:["The ability to distinguish truth from error and sense whether something is from God.","\u201cTest the spirits to see whether they are from God.\u201d 1 John 4:1","Discernment protects the body from error and helps it recognize what is truly from God.","Help leaders evaluate teaching and new ideas, serve on a prayer team, or help your trip team pray with insight about the people and places you meet."],
+Exhortation:["The ability to encourage, comfort and urge others toward faithfulness and growth.","\u201cSpur one another on toward love and good deeds.\u201d Hebrews 10:24","Everyone grows weary. Exhorters keep the body moving forward by encouraging people to stay faithful and keep growing.","Mentor or disciple someone, write notes of encouragement, follow up with people who are struggling, or check in on teammates during a trip."],
+Shepherding:["The ability to care for, guide and protect a group of believers over the long haul.","\u201cBe shepherds of God's flock that is under your care.\u201d 1 Peter 5:2","People need to be known and cared for over time. Shepherds help the body stay healthy, connected and growing.","Lead or co-lead a Lifegroup, mentor students, follow up with newcomers, or look after the well-being of your trip team."],
+Faith:["A Spirit-given confidence in God's power and promises that keeps trusting when circumstances look impossible.","Faith is \u201cconfidence in what we hope for.\u201d Hebrews 11:1","Faith helps the body attempt what only God can do, and lifts others' hope when circumstances look impossible.","Pray for breakthroughs on a prayer team, champion bold new initiatives, encourage people in crisis, or trust God openly for provision on a trip."],
+Evangelism:["The ability to share the good news of Jesus clearly so people respond in faith.","\u201cHow beautiful are the feet of those who bring good news!\u201d Romans 10:15","The church exists to make disciples. Evangelists keep the body focused outward and help people take their first steps toward Jesus.","Serve at outreach events, invite friends to church, train others to share their story, or start conversations during trip outreach."],
+Apostleship:["The ability to pioneer new ministries and extend the church into new places and cultures.","\u201cSet apart for me Barnabas and Saul for the work to which I have called them.\u201d Acts 13:2","The church is always being sent. Apostles push the body into new places and help start what doesn't yet exist.","Help launch a new ministry or group, join a church-planting or missions team, or lead pioneering outreach on a trip."],
+Service:["The ability to see practical needs and gladly meet them so the whole body can do its work.","\u201cUse whatever gift you have received to serve others.\u201d 1 Peter 4:10","Every ministry depends on countless practical tasks. People with this gift make it possible for everyone else to do what God has called them to.","Serve on setup, tech, hospitality or facilities teams, help with meals, or take on work projects during a trip."],
+Mercy:["The ability to feel deep compassion for people who are suffering and act to relieve it.","\u201cBe merciful, just as your Father is merciful.\u201d Luke 6:36","Mercy shows people the compassion of Jesus in their hardest moments, and keeps the body from overlooking those who are hurting.","Visit people who are sick, homebound or grieving, serve with a food bank or care ministry, or care for hurting people you meet on mission."],
+Giving:["The ability to contribute resources generously and cheerfully to advance God's work.","\u201cGod loves a cheerful giver.\u201d 2 Corinthians 9:7","Generosity fuels ministry and reflects God's own generous heart. Givers help the body meet needs and reach further.","Give faithfully to your church, quietly meet needs you notice, support missionaries, or help fund a teammate's trip."],
+Hospitality:["The ability to create a warm welcome where people feel valued and connected.","\u201cOffer hospitality to one another without grumbling.\u201d 1 Peter 4:9","Hospitality turns strangers into family. It helps people feel they belong, which is often the first step toward faith and community.","Host a Lifegroup or meal, greet and follow up with newcomers, welcome international students, or help your team feel at home on a trip."]};
+const GX_LABELS=["Why it matters to the body of Christ","How you might use it"];
+function giftsActionHTML(){
+  const top=topGifts(3);if(!top.length)return "";
+  return `<div class="card stack" style="gap:18px"><div class="stack" style="gap:4px"><span class="eyebrow">Your gifts in action</span><h3>What your gifts are and how to use them</h3>
+   <p class="note" style="max-width:68ch">God gives every gift to build up the whole church (1 Corinthians 12:7). Here's what each of your top gifts is, why it matters, and how you might put it to work.</p></div>
+   ${top.map((x,k)=>{const g=GIFTS[x.i][0],e=GIFTX[g];if(!e)return "";return `<div class="stack" style="gap:10px;border-top:1px solid var(--line);padding-top:16px">
+     <div class="row" style="gap:10px"><span class="sw" style="width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--ink);font-weight:600;font-size:.85rem;border:2px solid ${giftHue(x.i)}">${k+1}</span><h3>${esc(g)}</h3><span class="mono note">${x.t}/${MAXS}</span></div>
+     <p style="max-width:70ch">${esc(e[0])}</p><p class="verse" style="font-size:1rem">${esc(e[1])} <span class="note" style="font-family:var(--f-body)">NIV</span></p>
+     <div class="uio">${GX_LABELS.map((h,j)=>`<div><span class="k">${h}</span><p>${esc(e[2+j])}</p></div>`).join("")}</div></div>`}).join("")}</div>`;
+}
+const CAUTION_X={
+Leadership:["Vision can quietly become yours instead of God's when results start to matter more than people.","Seek counsel before big decisions, and lead as a servant who listens (Mark 10:42–45)."],
+Administration:["When the plan becomes the goal, interruptions and people can start to feel like obstacles.","Hold plans loosely, leave margin for people, and give others real ownership (Proverbs 16:9)."],
+Teaching:["Knowledge can puff up when it isn't paired with love (1 Corinthians 8:1).","Live what you teach first, and ask how a truth should change lives, not just minds (James 1:22)."],
+Knowledge:["Learning can become an end in itself, or a way to win arguments.","For every insight, ask who it could serve and how, and hold it with humility (1 Corinthians 8:1–3)."],
+Wisdom:["Seeing solutions quickly can tempt you to skip listening and praying.","Ask questions before giving answers, and pray before you advise (James 1:5; 3:17)."],
+Prophecy:["A strong sense of conviction can outrun love and good timing.","Weigh what you sense with mature leaders, and speak to build up, encourage and comfort (1 Corinthians 14:3, 29)."],
+Discernment:["Noticing what's wrong can turn into expecting the worst in people.","Pray before you speak, assume the best where you can, and raise concerns privately and gently (Galatians 6:1)."],
+Exhortation:["A desire to see people grow can rush past where they actually are.","Listen fully before urging action, and celebrate small steps of progress (James 1:19)."],
+Shepherding:["Deep care can slide into over-responsibility or needing to be needed.","Point people to Jesus as their Shepherd, share the care with others, and guard your own rest (1 Peter 5:2–4)."],
+Faith:["Confidence in God can make other people's doubts look like a lack of effort.","Walk patiently with those who struggle, and test bold steps with others before taking them (Romans 15:1)."],
+Evangelism:["A focus on decisions can overlook the whole person and their next steps.","Build real friendships, and connect new believers to community and discipleship (Matthew 28:19–20)."],
+Apostleship:["The pull toward what's next can leave people and systems behind.","Raise up leaders to carry what you start, and honor the people who sustain it (2 Timothy 2:2)."],
+Service:["Seeing every need can feel like being responsible for every need.","Say yes to what God assigns, rest without guilt, and invite others to serve alongside you (Luke 10:38–42)."],
+Mercy:["Compassion without boundaries can rescue people from growth, or wear you down.","Pair compassion with truth, set healthy limits, and bring your own burdens to God (Matthew 11:28–30)."],
+Giving:["Generosity can quietly become a source of influence or identity.","Give in secret, attach no strings, and plan your giving wisely (Matthew 6:3–4)."],
+Hospitality:["Wanting everyone to feel welcome can make it hard to ever say no.","Welcome from overflow, not obligation, and protect time for your own household and Sabbath (Mark 6:31)."]};
+const FIVE_INTRO="In Ephesians 4:11–13, Paul says Christ gave apostles, prophets, evangelists, shepherds and teachers to equip His people for works of service, so the whole body is built up toward unity and maturity. These five are sometimes called APEST. Christians differ on whether they are offices held by a few leaders or functions any believer can express. Here they're used to show how you may help equip others. Most people lean toward one or two, and a healthy church needs all five.";
+const FIVEX={
+Apostle:{looks:"Sees what doesn't exist yet and starts it: new ministries, outreach and church plants. Pushes the church outward.",equips:"Sends people out and builds structures that multiply.",trip:"Spots the opportunity and rallies the team to step into it.",ref:"Acts 13:2–3"},
+Prophet:{looks:"Senses God's heart and timing, calls people back to faithfulness, and notices what's out of alignment.",equips:"Helps others listen to God and respond with obedience.",trip:"Keeps the team prayerful and attentive to what God is doing.",ref:"1 Corinthians 14:3"},
+Evangelist:{looks:"Talks about Jesus naturally, builds bridges with people outside the church, and stirs others to share their faith.",equips:"Gives others confidence to share the gospel.",trip:"First to start conversations during outreach.",ref:"Acts 8:26–40"},
+Shepherd:{looks:"Notices who is struggling, builds community, and walks with people over the long haul.",equips:"Teaches others to care for one another.",trip:"Keeps the team healthy and connected, and checks on people.",ref:"John 10:11–14"},
+Teacher:{looks:"Explains Scripture clearly, loves truth, and helps people apply it to everyday life.",equips:"Helps others understand and live out God's Word.",trip:"Leads devotions and Bible studies, and grounds the team in truth.",ref:"2 Timothy 2:2"}};
+const FIVE=[["Apostle","Apostleship","Pioneers and extends the church's mission into new places."],["Prophet","Prophecy","Helps the church hear and respond to God."],["Evangelist","Evangelism","Reaches people with the good news of Jesus."],["Shepherd","Shepherding","Cares for, protects and builds community among people."],["Teacher","Teaching","Helps people understand and apply God's truth."]];
+function fiveScores(){const s=sums();return FIVE.map(([role,g,d])=>{const i=GIFTS.findIndex(x=>x[0]===g);return{role,g,d,t:s[i].t,n:s[i].n}})}
+function fiveTop(){const f=fiveScores();if(f.every(x=>!x.n))return[];const m=Math.max(...f.map(x=>x.t));return f.filter(x=>x.t===m)}
+const CALLING_DESC="A calling statement is one sentence that sums up how God has shaped you and what you sense He is inviting you to do with it. It brings your gifts, heart and abilities together into a single purpose. It isn't a job title or a final answer. It's a working draft you'll keep refining as you pray, serve and hear from people who know you. \u201cFor we are God's masterpiece... created anew in Christ Jesus, so we can do the good things he planned for us long ago\u201d (Ephesians 2:10, NLT).";
+function suggestedCalling(){
+  const top=topGifts(2).map(x=>GIFTS[x.i][0]);
+  const heart=[...S.topPeople.slice(0,2)].map(x=>x.toLowerCase()).concat(S.topCauses.slice(0,1).map(x=>x.toLowerCase()));
+  const ab=S.topAbil.slice(0,2).map(x=>abLabel(x).replace(/^./,c=>c.toLowerCase()));
+  return `God has gifted me with ${top.length?joinList(top.map(x=>x.toLowerCase())):"___"}, given me a heart for ${heart.length?joinList(heart):"___"}, and wired me with ${ab.length?joinList(ab):"___"}, so that I can ___.`;
+}
+const callingText=()=>(S.calling||"").trim()||suggestedCalling();
+function radarSVG(){
+  const f=fiveScores(),W=340,H=300,cx=170,cy=158,R=100,ang=k=>(-90+k*72)*Math.PI/180,pt=(k,r)=>[cx+r*Math.cos(ang(k)),cy+r*Math.sin(ang(k))];
+  const ring=v=>FIVE.map((_,k)=>pt(k,R*v/MAXS).map(n=>n.toFixed(1)).join(",")).join(" ");
+  const top=new Set(fiveTop().map(x=>x.role));
+  const poly=f.map((x,k)=>pt(k,R*Math.max(x.t,0)/MAXS).map(n=>n.toFixed(1)).join(",")).join(" ");
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Radar chart of fivefold ministry scores: ${f.map(x=>x.role+" "+x.t+" of 25").join(", ")}" style="width:100%;max-width:380px;height:auto;display:block;margin:0 auto">
+   ${[5,10,15,20,25].map(v=>`<polygon points="${ring(v)}" fill="none" stroke="var(--line)" stroke-width="1"/>`).join("")}
+   ${FIVE.map((_,k)=>{const [x,y]=pt(k,R);return `<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--line)" stroke-width="1"/>`}).join("")}
+   ${[10,20].map(v=>{const [x,y]=pt(0,R*v/MAXS);return `<text x="${x+4}" y="${y+3}" font-size="9" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${v}</text>`}).join("")}
+   <polygon points="${poly}" fill="var(--accent)" fill-opacity=".22" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+   ${f.map((x,k)=>{const [px,py]=pt(k,R*x.t/MAXS);return `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="${top.has(x.role)?5:3.5}" fill="var(--accent)" stroke="var(--surface)" stroke-width="1.5"/>`}).join("")}
+   ${f.map((x,k)=>{const [lx,ly]=pt(k,R+26);const anchor=Math.abs(lx-cx)<8?"middle":lx>cx?"start":"end";return `<text x="${lx.toFixed(1)}" y="${(ly-2).toFixed(1)}" text-anchor="${anchor}" font-size="13" font-weight="${top.has(x.role)?700:500}" fill="var(--ink)" font-family="Instrument Sans,system-ui,sans-serif">${x.role}</text><text x="${lx.toFixed(1)}" y="${(ly+12).toFixed(1)}" text-anchor="${anchor}" font-size="10.5" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${x.t}/${MAXS}</text>`}).join("")}
+  </svg>`;
+}
+function heartStatement(){
+  const r=S.topHRole[0],p=S.topPeople[0],c=S.topCauses[0];if(!r&&!p&&!c)return "";
+  const verb=r?(HROLE_VERB[r]||r.toLowerCase()):"serve";
+  return `I love to ${verb}${p?` alongside ${p.toLowerCase()}`:""}${c?`, especially around ${c.toLowerCase()}`:""}.`;
+}
+function heartHTML(){
+  const cols=[["People","I love to be with",S.topPeople],["Causes","I get excited about",S.topCauses],["Role","I love to",S.topHRole]];
+  const hs=heartStatement();
+  return `<div class="card stack" style="grid-column:1/-1;gap:14px"><span class="eyebrow">Heart · three areas</span>
+   <div class="res-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px">${cols.map(([h,pr,a])=>`<div class="kv"><span class="k">${h}</span><span class="note">${pr}…</span>${ol(a,"Not chosen yet")}</div>`).join("")}</div>
+   ${hs?`<div class="kv" style="border-top:1px solid var(--line);padding-top:12px"><span class="k">Your heart in one sentence</span><p style="font-family:var(--f-display);font-size:1.25rem;line-height:1.35">${esc(hs)}</p><p class="note">Built from your first pick in each area. Where these three meet is often where you'll serve with the most joy.</p></div>`:""}</div>`;
+}
+function fiveHTML(){
+  const ft=fiveTop();if(!ft.length)return "";
+  return `<div class="card stack" style="gap:16px"><div class="stack" style="gap:6px"><span class="eyebrow">Fivefold ministry · Ephesians 4:11–13</span><h3>How you may help equip others</h3>
+   <p class="note" style="max-width:68ch;color:var(--ink)">${FIVE_INTRO}</p><p class="note">These five scores come straight from your spiritual gifts survey.</p></div>
+   <div class="res-grid" style="align-items:center">${radarSVG()}<div class="stack" style="gap:12px">
+    <p style="font-family:var(--f-display);font-size:1.2rem">You lean most toward ${joinList(ft.map(x=>x.role))}.</p>
+    ${ft.map(x=>{const e=FIVEX[x.role];return `<div class="stack" style="gap:6px"><p><strong>${x.role}</strong> · ${esc(x.d)}</p><div class="kv"><span class="k">What it looks like</span><p style="font-size:.93rem">${esc(e.looks)}</p></div><div class="kv"><span class="k">How you equip others</span><p style="font-size:.93rem">${esc(e.equips)}</p></div><div class="kv"><span class="k">On a trip team</span><p style="font-size:.93rem">${esc(e.trip)}</p></div><span class="note">${e.ref}</span></div>`}).join("")}
+   </div></div>
+   <div class="stack" style="gap:8px"><span class="k" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600">All five</span>
+   <div class="five-grid">${fiveScores().map(x=>`<div class="${ft.includes(x)?"on":""}"><div class="row" style="justify-content:space-between"><strong>${x.role}</strong><span class="mono">${x.t}/${MAXS}</span></div><span>${esc(x.d)}</span><span class="note">On a trip: ${esc(FIVEX[x.role].trip)}</span></div>`).join("")}</div>
+   <p class="note">Notice who on your team is strong where you're not. You need each other.</p></div></div>`;
+}
+function callingHTML(){
+  if(!topGifts(1).length)return "";
+  return `<div class="card stack"><span class="eyebrow">Draft calling statement</span><h3>Put it all together</h3>
+   <p style="max-width:68ch;font-size:.95rem">${CALLING_DESC}</p>
+   <p class="note" style="max-width:66ch">We filled in a starting draft from your results. Make it your own, then finish the last blank: what might God be calling you to do with all of this? You'll come back to this in the spring.</p>
+   <textarea id="calling" data-field="calling" rows="4" style="font-family:var(--f-display);font-size:1.1rem;line-height:1.45">${esc(callingText())}</textarea>
+   <div class="row"><button class="btn ghost" id="callingReset">Reset to suggested draft</button></div></div>`;
+}
+
+const CAT=GIFTS.map(g=>g[4]),SERVE=GIFTS.map(g=>g[5]);
+const SCALE=["Not at all","About 25%","About 50%","Most of the time","Highly characteristic"];
+const CATDESC={Serving:"You tend to express love through practical, tangible service that makes ministry work.",Speaking:"You tend to minister through words: explaining, encouraging and applying God's truth.",Leadership:"You tend to see where a group should go and help people move there together.",Sign:"You tend to minister through spiritual insight, prayer and steady trust in God."};
+
+const HUES=["--cobalt","--ruby","--amber","--emerald","--violet","--teal","--ruby"];
+const giftHue=i=>`var(${["--cobalt","--ruby","--amber","--emerald","--violet","--teal"][(i*5)%6]})`;
+
+const Q=`I have the ability to organize ideas, resources, time, and people effectively.
+I am willing to study and prepare for the task of teaching.
+I am able to relate the truths of God to specific situations.
+I have a God-given ability to help others grow in their faith.
+I possess a special ability to communicate the truth of salvation.
+I have the ability to make critical decisions when necessary.
+I am sensitive to the hurts of people.
+I experience joy in meeting needs through sharing possessions.
+I enjoy studying.
+I have delivered God's message of warning and judgment.
+I am able to sense the true motivation of persons and movements.
+I have a special ability to trust God in difficult situations.
+I have a strong desire to contribute to establishing new churches.
+I take action to meet physical and practical needs rather than just talking about how to help.
+I enjoy entertaining guests in my home.
+I can adapt my guidance to fit the maturity of those working with me.
+I can delegate and assign meaningful work.
+I have an ability and desire to teach.
+I am usually able to analyze a situation correctly.
+I have a natural tendency to encourage others.
+I am willing to take initiative in helping other Christians grow in their faith.
+I have an acute awareness of other people's emotions, such as loneliness, pain, fear, and anger.
+I am a cheerful giver.
+I spend time digging into facts.
+I feel that I have a message from God to deliver to others.
+I can recognize when a person is genuine and honest.
+I am a person of vision. I communicate it in a way that moves others to act.
+I am willing to yield to God's will rather than question and waver.
+I would like to be more active getting the gospel to people in other countries.
+It makes me happy to do things for people in need.
+I am successful in getting a group to do its work joyfully.
+I am able to make strangers feel at ease.
+I have the ability to teach to a variety of different learning styles.
+I can identify those who need encouragement.
+I have trained Christians to be more obedient disciples of Christ.
+I am willing to do whatever it takes to see others come to Christ.
+I am drawn to people who are hurting.
+I am a generous giver.
+I am able to discover new truths in Scripture.
+I have spiritual insights from Scripture that compel me to speak out.
+I can sense when a person is acting in accordance with God's will.
+I can trust in God even when things look dark.
+I can determine where God wants a group to go and help it get there.
+I have a strong desire to take the gospel to places where it has never been heard.
+I enjoy reaching out to new people in my church and community.
+I am sensitive to the needs of people.
+I have been able to make effective and efficient plans for accomplishing group goals.
+I am often consulted when fellow Christians struggle with difficult decisions.
+I think about how I can comfort and encourage others in my congregation.
+I am able to give spiritual direction to others.
+I am able to present the gospel in a way that people accept Christ.
+I possess an unusual capacity to understand the feelings of those in distress.
+I have a strong sense of stewardship, recognizing that God owns all things.
+I have delivered to others messages that came directly from God.
+I can sense when a person is acting under God's leadership.
+I try to remain in God's will continually and stay available for his use.
+I feel that I should take the gospel to people who have different beliefs from me.
+I have an acute awareness of the physical needs of others.
+I am skilled in setting forth positive and precise steps of action.
+I like to meet visitors at church and make them feel welcome.
+I explain Scripture in such a way that others understand it.
+I can usually see spiritual solutions to problems.
+I welcome opportunities to help people who need comfort, consolation, and counseling.
+I feel at ease sharing Christ with nonbelievers.
+I can influence others to perform to their highest God-given potential.
+I recognize the signs of stress and distress in others.
+I desire to give generously and unpretentiously to worthwhile ministries.
+I can organize facts into meaningful relationships.
+God gives me messages to deliver to his people.
+I sense whether people are being honest about their spiritual experiences.
+I enjoy presenting the gospel to persons of other cultures and backgrounds.
+I enjoy doing little things that help people.
+I can give a clear, uncomplicated presentation of the gospel.
+I have been able to apply biblical truth to the specific needs of my church.
+God has used me to encourage others to live Christlike lives.
+I have sensed the need to help others become more effective in their ministries.
+I like to talk about Jesus to those who do not know him.
+I have the ability to make strangers feel comfortable in my home.
+I have a wide range of study resources and know how to find information.
+I feel assured a situation will change for God's glory even when it seems impossible.`.split("\n");
+
+const HROLES=[["Design / Develop","make something out of nothing and get things started","design and develop new things"],["Pioneer","test new ideas and venture into the unknown","pioneer new things"],["Organize","bring order out of chaos","organize"],["Operate / Maintain","keep things running smoothly and efficiently","keep things running"],["Serve / Help","assist others so they can succeed","serve and help others"],["Lead","take charge and guide people toward a goal","lead"],["Influence","shape the attitudes and choices of others","influence others"],["Improve","make something better than it was","improve things"],["Repair","fix what is broken or worn out","repair what's broken"],["Excel","do things with excellence and achieve the highest standard","pursue excellence"],["Persevere","see things through to completion","see things through"],["Perform","express yourself in front of others","perform"],["Meet Needs","respond to needs as they arise","meet needs as they arise"]];
+const HROLE_VERB=Object.fromEntries(HROLES.map(x=>[x[0],x[2]]));
+const PEOPLE=["Children","College","Disabled","Divorced","Elderly","Empty Nesters","Foreign Cultures","Homeless","Hospitalized","Infants","Parents","Poor","Prisoners","Single Parents","Singles","Teen Moms","Unemployed","Widowed","Young Married","Youth"];
+const CAUSES=["Abortion","Abuse/Violence","Addictions","At-Risk Children","Child Care","Compulsive Behavior","Deafness","Discipleship","Economics","Education","Environment","Ethics","Family","Finances","Health/Fitness","HIV/AIDS","Human Trafficking","Law/Justice System","Literacy","Marriage/Family","Politics","Poverty","Racism","Sanctity of Life","Spiritual Apathy","Violence"];
+const ABIL_GROUPS=[
+["Communication & People",[["Entertaining","performing, acting, speaking, singing"],["Recruiting","enlisting and motivating people"],["Interviewing","drawing out what others are like"],["Teaching","explaining, training, demonstrating"],["Counseling / Encouraging","listening, guiding"],["Welcoming","making others feel at ease"],["Public Relations","handling difficult situations"],["Recall","remembering names and faces"],["Linguistic","speak or write another language"]]],
+["Organization & Administration",[["Planning","strategizing, organizing programs and events"],["Managing","supervising, coordinating details"],["Evaluating","analyzing data, drawing conclusions"],["Counting","numbers, data, money"],["Classifying","filing, systematizing records"],["Business Administration","typing, filing, phones"],["Financial / Numeric","accounting, bookkeeping"],["Critical Thinking","evaluate, assess, problem-solve"],["Leadership","coaching, mentoring, facilitating"]]],
+["Creative & Technical",[["Artistic","creating or designing"],["Writing","articles, letters, content"],["Editing","proofreading, rewriting"],["Promoting","advertising, promoting events"],["Researching","gathering information, data"],["Musical","singing or playing an instrument"],["Decorating","beautifying spaces for events"],["Technology","operating and repairing equipment"],["Computer Technology","apps, design, programming"],["Production","audio, lighting, recording, camera"],["Video / Media","editing, directing, producing"]]],
+["Practical & Hands-On",[["Repairing","fixing, restoring, maintaining"],["Mechanical","operating tools or machinery"],["Feeding","creating meals for groups"],["Landscaping","gardening, plants"],["Athletic / Fitness","coaching or participating in sports"],["Resourceful","finding inexpensive materials"],["Photography / Cooking / Crafts / Sewing",""],["Social Networking",""]]]];
+const ABIL=ABIL_GROUPS.flatMap(g=>g[1]);
+const abLabel=x=>x==="Linguistic"&&S.abilLang?`Linguistic (${S.abilLang})`:x;
+const LIMIT={topAbil:3};
+const ABIL_DESC=Object.fromEntries(ABIL);
+const abWithDesc=x=>ABIL_DESC[x]?`${abLabel(x)} (${ABIL_DESC[x]})`:abLabel(x);
+function abilCats(){const c=ABIL_GROUPS.map(([g,items])=>({g,n:items.filter(([nm])=>S.abil.includes(nm)).length,of:items.length}));const max=Math.max(...c.map(x=>x.n));return{all:c,top:max>0?c.filter(x=>x.n===max):[]}}
+const CATINFO={
+"Communication & People":{s:"You come alive working with and through people.",t:"Teaching, welcome teams, mentoring, small groups and outreach.",trip:"The front-line connector who builds relationships.",w:"Overlooking the behind-the-scenes needs that keep ministry running."},
+"Organization & Administration":{s:"You bring order, direction and follow-through.",t:"Event planning, ministry operations, finances and leading teams.",trip:"Logistics, schedules and budgets, keeping the team on track.",w:"Valuing efficiency over people."},
+"Creative & Technical":{s:"You help the church communicate and worship with excellence.",t:"Worship, media, design, production and writing.",trip:"Photos, video, storytelling and tech setup.",w:"Perfectionism, or working alone when others could help."},
+"Practical & Hands-On":{s:"You show love by doing.",t:"Facilities, meals, setup, repairs and service projects.",trip:"Work projects, food and making things happen.",w:"Thinking your contribution is “just practical.” It's ministry."}};
+function abilCatHTML(){
+  const c=abilCats();if(!c.top.length)return "";
+  const max=Math.max(...c.all.map(x=>x.n),1);
+  return `<div class="card stack" style="grid-column:1/-1;gap:16px">
+    <div class="stack" style="gap:4px"><span class="eyebrow">Your abilities in action</span><h3>Where your natural abilities lean</h3>
+    <p class="note" style="max-width:66ch">Based on how many abilities you checked in each category.</p></div>
+    <div class="stack" style="gap:8px">${c.all.map(x=>`<div class="catrow"><span${c.top.includes(x)?' style="font-weight:600;color:var(--ink)"':""}>${esc(x.g)}</span><div class="cbar"><span style="background:${c.top.includes(x)?"var(--accent)":"var(--line)"};width:${x.n/x.of*100}%"></span></div><span class="mono">${x.n}/${x.of}</span></div>`).join("")}</div>
+    ${c.top.map(x=>{const i=CATINFO[x.g];return `<div class="stack" style="gap:8px;border-top:1px solid var(--line);padding-top:14px"><h3>${esc(x.g)}</h3><p>${i.s}</p>
+      <div class="res-grid" style="gap:10px 20px"><div class="kv"><span class="k">Where you might thrive</span><p style="font-size:.93rem">${i.t}</p></div><div class="kv"><span class="k">On a trip team</span><p style="font-size:.93rem">${i.trip}</p></div><div class="kv"><span class="k">Shadow side</span><p style="font-size:.93rem">${i.w}</p></div></div></div>`}).join("")}
+    <p class="note" style="border-top:1px solid var(--line);padding-top:12px;color:var(--ink)">Teams need all four kinds of contribution. Look for teammates who are strong where you're not, and offer what you bring where they need it (1 Corinthians 12:21).</p>
+  </div>`;
+}
+const abilCatText=()=>{const t=abilCats().top;return t.length?t.map(x=>`${x.g} (${x.n} of ${x.of} checked)`).join(" and "):""};
+const EDU=["High School Diploma","Associate of Arts Degree","Bachelor's Degree","Master's Degree","PhD / Doctoral Degree","Specialized / Vocational Training"];
+const JOBS=["Administrative Support","Advertising / Marketing","Agriculture","Architecture / Design","Automotive","Computer / Technology","Construction / Building","Counseling","Education / Teaching","Entertainment / Media","Finance / Accounting","Fire / Law Enforcement","Food / Restaurant","Government / Public Service","Healthcare / Medical","Human Resources","Law / Legal","Manufacturing","Military","Non-Profit / Ministry","Real Estate","Retail / Sales","Small Business Owner","Social Work / Community","Transportation","Vocational Ministry","Retired / Student"];
+const SPIRIT=["Baptized","Member of a small group","Led someone to Christ","Gone on a mission trip","Community / cross-cultural ministry","Currently serving in ministry","Regularly read the Bible and pray"];
+const AGES=["Infants / Babies","Preschool / Elementary","Jr. High / High School","College / Career","Young Marrieds / Couples","Men / Women / Singles","Senior Adults","Family"];
+const ROLES=["Administrative Support","Bible Teacher / Discussion Leader","Children's Team","Communications / Tech / Graphics","Disciple / Mentor","Drama / Creative Arts","Facilities / Setup / Teardown","Food Prep / Food Bank","Greeter / Usher / Welcome","Missions / Outreach","Musician / Worship","Prayer Team","Security / Traffic","Small Group Leader","Technical / AV Support"];
+const LIFE=["Abuse","Addiction / Recovery","Adoption","Bankruptcy","Cancer","Chronic Pain / Illness","Death / Grief","Depression / Anxiety","Disability","Divorce","Eating Disorder","Extended Job Loss","Homelessness","Infertility / Miscarriage","Mental Health","Military / Wartime","Prison","Sexual Compulsion","Suicide of a Loved One","Widowed"];
+const MBQ={
+EI:[["E","Getting together with friends","I","Having quiet time alone","After a long week, I recharge by"],["E","Talk with lots of people, including strangers","I","Stay with a few people I know well","At a party, I usually"],["I","Think things through before I speak","E","Think out loud as I talk","I tend to"],["E","Jump in early","I","Listen first and speak later","In a group discussion, I"],["I","A few deep friendships","E","A wide circle of friends","I'd rather have"],["E","People around me","I","A quiet space to focus","When I'm working, I prefer"],["I","Reserved until they get to know me","E","Easy to get to know","People would describe me as"],["E","Out and about with others","I","At home or with one close friend","A free Saturday sounds best"],["E","Fun and energizing","I","Uncomfortable or draining","Being the center of attention feels"]],
+SN:[["S","Facts and details","N","Patterns and possibilities","I pay more attention to"],["N","A general idea I can figure out","S","Clear, step-by-step directions","I prefer instructions that give me"],["S","What is real and practical","N","What could be","I'm more interested in"],["N","The big themes and how they connect","S","The specific details of the passage","When I read Scripture, I'm drawn to"],["S","Experience and what's been proven","N","Hunches and inspiration","I tend to trust"],["N","Something new and untested","S","Improving something that already works","I'd rather work on"],["S","Practical and down-to-earth","N","Imaginative and full of ideas","People would say I'm"],["S","Describe what happened, in order","N","Jump to what it meant","When I tell a story, I"],["N","Dreaming about the future","S","Getting concrete things done today","I'd rather spend time"]],
+TF:[["T","Logic and what makes sense","F","Values and how people will be affected","When making a decision, I rely more on"],["F","Offer empathy and support","T","Help analyze and solve it","When a friend shares a problem, I first"],["T","Honest and fair","F","Warm and caring","I'd rather be known as"],["F","Keeping the relationship healthy","T","Getting to the right answer","In a disagreement, I focus on"],["T","Direct and to the point","F","Gentle and encouraging","The feedback I give tends to be"],["T","A well-reasoned argument","F","A moving personal story","I'm more convinced by"],["F","Everyone feels heard","T","The best option was chosen","When a team decides something, I care most that"],["T","Ask whether it's true","F","Consider how someone feels about it","When I hear a new idea, I'm more likely to"],["F","Smooth things over","T","Address the issue head-on","In conflict, I tend to"]],
+JP:[["J","Have a plan and stick to it","P","Keep my options open","I prefer to"],["P","Motivate me at the last minute","J","Get done early","Deadlines usually"],["J","Organized and tidy","P","A bit messy, but I know where things are","My space is usually"],["P","Explore and see what happens","J","Follow an itinerary","On a trip, I like to"],["J","Decisions are made and settled","P","Things are still open","I feel better when"],["P","Spontaneous and flexible","J","Scheduled and orderly","I'm more"],["J","Frustrate me","P","Don't bother me much","Unexpected changes to plans"],["J","Finish one project before starting another","P","Work on several things at once","I like to"],["P","Rare or loosely followed","J","Regular and checked off","My to-do lists are"]]};
+const MB=[];for(let k=0;k<9;k++)["EI","SN","TF","JP"].forEach(d=>{const q=MBQ[d][k];MB.push({d,a:q[0],at:q[1],b:q[2],bt:q[3],q:q[4]})});
+const MBDIM={EI:["E","Extraversion","I","Introversion","Where you get your energy","Energized by people and activity","Energized by reflection and time alone"],SN:["S","Sensing","N","Intuition","How you take in information","Focused on facts, details and the present","Focused on patterns, meaning and the future"],TF:["T","Thinking","F","Feeling","How you make decisions","Weighs logic and principles","Weighs values and people"],JP:["J","Judging","P","Perceiving","How you approach your world","Prefers plans and closure","Prefers flexibility and options"]};
+const MBTYPES={
+ISTJ:["Steady and dependable","Faithful, practical and thorough. You honor commitments and keep things running.","administration, finances, logistics and anything that needs reliability","rigidity when plans change, or being hard on people who are less careful"],
+ISFJ:["Quiet caregiver","Warm, loyal and attentive. You notice what people need and quietly meet it.","hospitality, care ministry, children's ministry and behind-the-scenes service","overcommitting, avoiding conflict, or feeling unappreciated"],
+INFJ:["Insightful encourager","Deep, values-driven and perceptive about people. You're drawn to meaning and growth.","mentoring, prayer, counseling, writing and discipleship","burning out from carrying others' burdens, or withdrawing when misunderstood"],
+INTJ:["Strategic thinker","Independent, analytical and future-focused. You see how things could work better.","strategy, planning, teaching and research","impatience with inefficiency, or coming across as distant or blunt"],
+ISTP:["Practical problem-solver","Calm, observant and hands-on. You stay steady in a crisis.","tech, production, facilities, repairs and trip logistics","keeping feelings to yourself, or checking out of long discussions"],
+ISFP:["Gentle creative","Kind, sensitive and present. You show care through action and creativity.","the arts, worship, hospitality and one-on-one care","avoiding conflict, or underestimating your own value"],
+INFP:["Idealistic encourager","Compassionate, creative and driven by deep values.","writing, creative arts, counseling and mercy ministry","discouragement when ideals aren't met, or taking criticism personally"],
+INTP:["Curious analyst","Logical and curious, drawn to ideas and big questions.","teaching, apologetics, research and problem-solving","overthinking, or neglecting follow-through and feelings"],
+ESTP:["Energetic doer","Action-oriented, adaptable and quick on your feet.","outreach, events, youth ministry and crisis response","impatience with planning, or taking risks without counting the cost"],
+ESFP:["Joyful connector","Warm, fun and spontaneous. You bring people together and live in the moment.","welcome teams, events, youth and children's ministry, and worship","avoiding hard conversations, or scattered follow-through"],
+ENFP:["Enthusiastic inspirer","Imaginative, relational and full of possibilities.","outreach, vision-casting, small groups and creative ministry","starting more than you finish, or overcommitting"],
+ENTP:["Inventive challenger","Quick, curious and energized by new ideas and debate.","pioneering ministries, strategy and apologetics","arguing for sport, or losing interest after the idea phase"],
+ESTJ:["Organized leader","Decisive, practical and responsible. You get people and plans moving.","team leadership, operations, administration and trip logistics","running over people's feelings, or inflexibility"],
+ESFJ:["Caring host","Warm, cooperative and attentive. You build community and harmony.","hospitality, small groups, care ministry and events","people-pleasing, or taking conflict personally"],
+ENFJ:["Inspiring shepherd","Warm, persuasive and focused on people's growth.","leading groups, mentoring, teaching and vision-casting","overextending to help everyone, or neglecting your own needs"],
+ENTJ:["Visionary director","Confident, strategic and driven to organize people toward goals.","leadership, strategy and launching new ministries","impatience and bluntness, or valuing results over relationships"]};
+const MBX={
+ISTJ:{people:"You show love through reliability and follow-through more than words. People trust you because you do what you say.",team:"You keep commitments, track details, and bring order and consistency.",god:"Steady rhythms like regular Bible reading, liturgy and faithful obedience."},
+ISFJ:{people:"You remember details about people and care for them in practical ways. You value harmony and loyalty.",team:"You notice what's missing and quietly make sure everyone has what they need.",god:"Serving others, praying for the people you love, and meaningful traditions."},
+INFJ:{people:"You form deep one-on-one connections and often sense what others feel before they say it.",team:"You bring insight into people and a long-term vision for what the group could become.",god:"Reflection, journaling, contemplative prayer and seeking God's purpose."},
+INTJ:{people:"You value honesty and depth, and prefer meaningful conversation over small talk.",team:"You see the big picture, spot weaknesses in a plan, and design better systems.",god:"Studying Scripture and theology deeply and wrestling with hard questions."},
+ISTP:{people:"You're easygoing and loyal, and you show care by helping and fixing more than talking.",team:"You stay calm under pressure and find practical solutions fast.",god:"Solitude, time in creation, and serving with your hands."},
+ISFP:{people:"You're gentle, accepting and attentive, and you show care through kind actions.",team:"You bring warmth, flexibility and an eye for beauty and detail.",god:"Worship, art, nature and quiet moments of gratitude."},
+INFP:{people:"You're deeply caring and authentic, and you want people to be fully themselves.",team:"You bring creativity, conviction and care for people who are overlooked.",god:"Honest prayer, writing, worship and a faith that feels real."},
+INTP:{people:"You're curious about people's ideas and enjoy thoughtful, unhurried conversation.",team:"You analyze problems, ask probing questions and find creative solutions.",god:"Study, asking big questions, and seeing how truth fits together."},
+ESTP:{people:"You're fun, direct and engaging, and you build connection by doing things together.",team:"You bring energy, quick decisions and a bias for action.",god:"Active service, outreach, and seeing God at work in real situations."},
+ESFP:{people:"You're generous, playful and warm, and you make people feel included.",team:"You bring enthusiasm and help everyone enjoy the work.",god:"Joyful worship, community, and serving people face to face."},
+ENFP:{people:"You're encouraging and expressive, and you see potential in everyone.",team:"You spark ideas, energy and fresh vision.",god:"Worship, conversation, creativity, and dreaming about what God could do."},
+ENTP:{people:"You're witty and engaging, and you enjoy debating ideas with people you trust.",team:"You challenge assumptions and come up with new approaches.",god:"Wrestling with big questions and exploring new ways to live out faith."},
+ESTJ:{people:"You're straightforward and dependable, and you show care by taking responsibility.",team:"You organize people, set clear expectations and get things done.",god:"Consistent disciplines, clear teaching and obedient action."},
+ESFJ:{people:"You're warm and attentive, and you work hard to make sure everyone feels cared for.",team:"You build unity, coordinate people and create a welcoming atmosphere.",god:"Fellowship, worshiping with others, and serving the people around you."},
+ENFJ:{people:"You're encouraging and perceptive, and you naturally draw out the best in others.",team:"You unite people around a shared purpose and help each person grow.",god:"Community, worship, and investing in others' spiritual growth."},
+ENTJ:{people:"You're direct and confident, and you show care by helping people reach their goals.",team:"You set vision, make decisions and drive the team toward results.",god:"Bold faith, leadership, and pursuing big goals for God's kingdom."}};
+const mbLetters=t=>{const c=mbScores();return Object.values(MBDIM).map(([a,an,b,bn,lab,da,db])=>{const L=t.includes(a)?a:b;return {L,name:L===a?an:bn,desc:L===a?da:db,lab,sa:c[a],sb:c[b],a,b}})};
+function mbScores(){const c={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};S.mb.forEach(v=>{if(v)c[v]++});return c}
+const mbAnswered=()=>S.mb.filter(Boolean).length;
+function mbType(){if(mbAnswered()<MB.length)return null;const c=mbScores();return (c.E>c.I?"E":"I")+(c.S>c.N?"S":"N")+(c.T>c.F?"T":"F")+(c.J>c.P?"J":"P")}
+
+const KEY="shape-assessment-v1";
+const blank=()=>({name:"",g:Array(NQ).fill(null),gp:0,people:[],peopleO:"",causes:[],causesO:"",topPeople:[],topCauses:[],hrole:[],hroleO:"",topHRole:[],abil:[],abilO:"",abilLang:"",abilUse:"",topAbil:[],mb:Array(36).fill(null),edu:[],eduO:"",job:[],jobO:"",spirit:[],serveAge:[],serveRole:[],expUse:"",life:[],lifeO:"",ai:"",giftUse:"",calling:""});
+let S=blank();
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(blank(),JSON.parse(raw))}catch(e){}
+{const v=new Set(LIFE);S.life=(S.life||[]).filter(x=>v.has(x))}
+if(!Array.isArray(S.mb)||S.mb.length!==36)S.mb=Array(36).fill(null);
+if(!Array.isArray(S.g)||S.g.length!==NQ||S.g.some(v=>v!=null&&v>5)){S.g=Array(NQ).fill(null);S.gp=0}
+{const valid=new Set(ABIL.map(x=>x[0]));S.topAbil=(S.topAbil||[]).slice(0,3);S.abil=S.abil.filter(x=>valid.has(x));const o=S.abilO.split(",").map(x=>x.trim());S.topAbil=S.topAbil.filter(x=>valid.has(x)||o.includes(x))}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+const VIEWS=[["overview","","Overview"],["gifts","S","Spiritual Gifts"],["heart","H","Heart"],["abilities","A","Abilities"],["personality","P","Personality"],["experiences","E","Experiences"],["results","","Results"]];
+let view="overview";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=s=>document.querySelector(s);
+
+/* scoring */
+function sums(){return GIFTS.map(g=>{let t=0,n=0;g[3].forEach(q=>{const v=S.g[q-1];if(v!=null){t+=v;n++}});return{t,n}})}
+const answered=()=>S.g.filter(v=>v!=null).length;
+function ranks(){
+  if(answered()<NQ)return {};
+  const t=sums().map(s=>s.t),uniq=[...new Set(t)].sort((a,b)=>b-a),r={};
+  let count=0;["A","B","C"].forEach((L,li)=>{if(li>0&&count>=3)return;const v=uniq[li];if(v==null)return;t.forEach((x,i)=>{if(x===v){r[i]=L;count++}})});
+  return r;
+}
+function topGifts(n=3){const s=sums();return s.map((x,i)=>({i,t:x.t})).filter(x=>s[x.i].n>0).sort((a,b)=>b.t-a.t).slice(0,n)}
+const total=a=>a.every(v=>v!=null)?a.reduce((x,y)=>x+y,0):null;
+function status(v){
+  switch(v){
+    case "gifts":{const a=answered();return a===NQ?"done":a?"part":""}
+    case "heart":return S.topPeople.length&&S.topCauses.length&&S.topHRole.length?"done":(S.people.length||S.causes.length||S.hrole.length)?"part":"";
+    case "abilities":return S.topAbil.length?"done":S.abil.length?"part":"";
+    case "personality":return mbAnswered()===MB.length?"done":mbAnswered()?"part":"";
+    case "experiences":return S.expUse.trim()?"done":(S.edu.length||S.job.length||S.spirit.length||S.serveAge.length||S.serveRole.length||S.life.length)?"part":"";
+  }return "";
+}
+
+/* window */
+function windowHTML(cls=""){
+  const s=sums(),r=ranks(),top=new Set(topGifts().map(x=>x.i));
+  return `<div class="window ${cls}" role="img" aria-label="Stained-glass window of the 16 spiritual gifts, brighter panes scored higher">${GIFTS.map((g,i)=>{
+    const o=s[i].n?Math.max(.18,(s[i].t/s[i].n-1)/4):0;
+    return `<div class="pane ${answered()===NQ&&top.has(i)?"top":""}" style="--c:${giftHue(i)};--o:${o.toFixed(2)}" title="${esc(g[0])}">${r[i]?`<em class="rk" style="color:#fff">${r[i]}</em>`:""}<span>${esc(g[0].split(" (")[0].split(" /")[0])}</span></div>`}).join("")}</div>`;
+}
+
+/* tabs */
+function renderTabs(){
+  $("#tabs").innerHTML=VIEWS.map(([id,L,label])=>{const st=status(id);return `<button role="tab" aria-selected="${id===view}" data-go="${id}">${L?`<span class="l">${L}</span>`:""}${label}${st!==undefined&&L?`<span class="dot ${st}"></span>`:""}</button>`}).join("");
+}
+function go(v){view=v;try{history.replaceState(null,"","#"+v)}catch(e){}render();window.scrollTo({top:0})}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){go(b.dataset.go)}});
+
+/* checklist helper */
+function checklist(items,key,otherKey,topKey,wide){
+  return `<div class="checks ${wide?"wide":""}">${items.map(it=>{const name=Array.isArray(it)?it[0]:it,desc=Array.isArray(it)?it[1]:"";const id=`${key}-${name.replace(/\W+/g,"_")}`;
+    return `<label class="chk" for="${id}"><input type="checkbox" id="${id}" data-list="${key}" data-top="${topKey}" value="${esc(name)}" ${S[key].includes(name)?"checked":""}><span>${esc(name)}${desc?`<small>${esc(desc)}</small>`:""}</span></label>`}).join("")}</div>
+  ${otherKey?`<div class="other"><span class="muted">Other</span><input type="text" id="${otherKey}" data-other="${otherKey}" data-top="${topKey}" value="${esc(S[otherKey])}" placeholder="Add your own (comma-separated)"></div>`:""}`;
+}
+function pool(key,otherKey){const o=otherKey?S[otherKey].split(",").map(x=>x.trim()).filter(Boolean):[];return S[key].concat(o)}
+function picks(key,otherKey,topKey){
+  const p=pool(key,otherKey);S[topKey]=S[topKey].filter(x=>p.includes(x));
+  if(!p.length)return `<p class="empty">Check items above, then mark your top three here.</p>`;
+  return `<div class="picks">${p.map(x=>{const k=S[topKey].indexOf(x);return `<button class="pick" aria-pressed="${k>=0}" data-pick="${topKey}" data-val="${esc(x)}">${k>=0?`<b>${k+1}</b>`:""}${esc(x)}</button>`}).join("")}</div>`;
+}
+function topBlock(title,key,otherKey,topKey){return `<div class="stack"><div class="row" style="justify-content:space-between"><h3>${title}</h3><span class="note mono">${S[topKey].length}/${LIMIT[topKey]||3}</span></div><div id="pk-${topKey}">${picks(key,otherKey,topKey)}</div></div>`}
+function refreshPicks(topKey){const map={topPeople:["people","peopleO"],topCauses:["causes","causesO"],topAbil:["abil","abilO"],topHRole:["hrole","hroleO"]};if(!map[topKey]){renderTabs();return}const [k,o]=map[topKey];const el=document.getElementById("pk-"+topKey);if(el){el.innerHTML=picks(k,o,topKey);el.previousElementSibling.querySelector(".note").textContent=S[topKey].length+"/"+(LIMIT[topKey]||3)}renderTabs()}
+
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.dataset.list){const L=S[t.dataset.list];if(t.checked){if(!L.includes(t.value))L.push(t.value)}else S[t.dataset.list]=L.filter(x=>x!==t.value);save();refreshPicks(t.dataset.top)}
+});
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.dataset.other){S[t.dataset.other]=t.value;save();clearTimeout(t._t);t._t=setTimeout(()=>refreshPicks(t.dataset.top),400)}
+  if(t.id==="nm"){S.name=t.value;save()}
+  if(t.dataset.field){S[t.dataset.field]=t.value;save();renderTabs()}
+});
+document.addEventListener("click",e=>{
+  const p=e.target.closest("[data-pick]");
+  if(p){const k=p.dataset.pick,v=p.dataset.val,a=S[k],i=a.indexOf(v);if(i>=0)a.splice(i,1);else if(a.length<(LIMIT[k]||3))a.push(v);else{toast(`You already have ${LIMIT[k]||3}. Tap one to remove it first.`);return}save();refreshPicks(k);return}
+  const r=e.target.closest("[data-rate]");
+  if(r){const q=+r.dataset.rate,v=+r.dataset.v;S.g[q]=v;save();
+    r.parentElement.querySelectorAll("button").forEach(b=>b.setAttribute("aria-checked",+b.dataset.v===v));
+    updateGiftProgress();renderTabs();return}
+  const mbb=e.target.closest("[data-mb]");
+  if(mbb){const i=+mbb.dataset.mb,v=mbb.dataset.v;S.mb[i]=v;save();mbb.parentElement.querySelectorAll("button").forEach(b=>b.setAttribute("aria-checked",b===mbb));const c=$("#mbcount");if(c)c.textContent=mbAnswered()+"/"+MB.length+" answered";const bar=$("#mbbar");if(bar)bar.style.width=mbAnswered()/MB.length*100+"%";renderTabs();return}
+  const sg=e.target.closest("[data-seg]");
+  if(sg){const [k,i]=sg.dataset.seg.split(":");S[k][+i]=+sg.dataset.v;save();render();return}
+  const gp=e.target.closest("[data-gp]");
+  if(gp){S.gp=+gp.dataset.gp;save();render();window.scrollTo({top:0});return}
+});
+
+function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(t._t);t._t=setTimeout(()=>t.hidden=true,2400)}
+
+/* views */
+const QUESTIONS={gifts:"What has God supernaturally gifted me to do?",heart:"What do I have a passion for and love to do?",abilities:"What natural talents and skills do I have?",personality:"Where does my personality best suit me to serve?",experiences:"What relationships, successes, or painful experiences have shaped me?"};
+function about(q,what,how,vs){return `<div class="about"><p class="q">${q}</p><div><h4>What this represents</h4><div class="stack" style="gap:8px">${what.map(x=>`<p>${x}</p>`).join("")}</div></div><div><h4>How to complete it</h4><ol>${how.map(x=>`<li>${x}</li>`).join("")}</ol></div>${vs?`<p class="vs">${vs}</p>`:""}</div>`}
+function vOverview(){
+  const stLabel={done:"Complete",part:"In progress","":"Not started"};
+  return `<section data-view>
+  <div class="hero">
+    <div class="stack" style="gap:18px">
+      <span class="eyebrow">Antioch Fullerton</span>
+      <h1>How has God shaped you?</h1>
+      <p class="verse">“For we are God's masterpiece. He has created us anew in Christ Jesus, so that we can do the good things he planned for us long ago.” <span class="muted" style="font-family:var(--f-body);font-size:.85rem">Ephesians 2:10 NLT</span></p>
+      <p class="muted">S.H.A.P.E. is an acrostic from Pastor Rick Warren. Work through each letter at your own pace. Your answers stay in this browser until you reset them.</p>
+      <div class="kv" style="max-width:320px"><label class="k" for="nm">Your name (for your results)</label><input type="text" id="nm" value="${esc(S.name)}" placeholder="First and last name"></div>
+    </div>
+    <div>${windowHTML()}<p class="note" style="margin-top:8px;text-align:center">${answered()===NQ?"Your gift window. Outlined panes are your top three.":`Each pane lights up as you answer. ${answered()}/${NQ} statements answered.`}</p></div>
+  </div>
+  <div class="frame">
+    <div class="stack" style="gap:6px"><span class="eyebrow">Before you begin</span><h2>Who you are comes first</h2>
+    <p class="muted" style="max-width:62ch">This assessment can help you see how God has shaped you. Hold the results with open hands and keep these in mind.</p></div>
+    <ul class="frame-list">
+      <li><strong>Your identity is in Christ</strong><p>Your gifts, passions and personality describe how you serve, not who you are. You are a child of God before you are any result on this page.</p><span class="ref">Galatians 2:20 · 1 John 3:1</span></li>
+      <li><strong>Your gifts are for others</strong><p>God gives gifts to build up the church and serve people, not to make us feel important. Use what you discover here to serve someone.</p><span class="ref">1 Peter 4:10 · 1 Corinthians 12:7</span></li>
+      <li><strong>It's no excuse to stop growing</strong><p>"That's not my gift" never excuses impatience, unkindness or skipping obedience. The fruit of the Spirit is for every believer.</p><span class="ref">Galatians 5:22–23</span></li>
+      <li><strong>God works through weakness too</strong><p>Expect God to stretch you beyond your strengths. Some of His best work happens where you feel least equipped.</p><span class="ref">2 Corinthians 12:9</span></li>
+      <li><strong>Results are a starting point</strong><p>This test was written by people and is imperfect. If a result doesn't fit, don't stress. Gifts are confirmed over time by fruit and by others who know you.</p><span class="ref">1 Thessalonians 5:21</span></li>
+      <li><strong>You are one of a kind</strong><p>No test can fully describe you. God didn't make a handful of types; He made you, and He is still shaping you.</p><span class="ref">Psalm 139:13–16 · Philippians 1:6</span></li>
+    </ul>
+  </div>
+  <div class="acro">${VIEWS.slice(1,6).map(([id,L,label])=>`<button data-go="${id}"><span class="L">${L}</span><span><span class="t">${label}</span><br><span class="q">${QUESTIONS[id]}</span></span><span class="st">${stLabel[status(id)]}</span></button>`).join("")}</div>
+  <div class="row"><button class="btn primary" data-go="${answered()<NQ?"gifts":"results"}">${answered()?"Continue":"Begin with Spiritual Gifts"}</button><button class="btn ghost" data-go="results">View results</button></div>
+  </section>`;
+}
+function vGifts(){
+  const p=Math.min(S.gp,NP-1),start=p*PER,a=answered();
+  return `<section data-view>
+  <div class="stack"><span class="eyebrow">S · Spiritual Gifts Test</span><h2>Spiritual Gifts</h2></div>
+  ${about("What has God supernaturally gifted me to do?",
+   ["Spiritual gifts are special abilities the Holy Spirit gives every believer to build up the church and serve others.","Every Christian has at least one gift, and no one has them all. God chooses which gifts we receive, so we need one another."],
+   ["Rate each of the 80 statements from 1 (not at all) to 5 (highly characteristic of me).","There are no wrong answers. Your first response is usually the most accurate.","If you've been a Christian a few years, answer from experience. If you're newer, answer by the desire of your heart.","Gift names stay hidden until your results so they don't sway your answers. Plan on about 20–30 minutes; your progress saves as you go."],
+   "1 Peter 4:10 · 1 Corinthians 12:4–7 · This test was written by people and is imperfect. Treat it as a starting place.")}
+  <div class="stack" style="gap:8px"><div class="row" style="justify-content:space-between"><span class="note">Page ${p+1} of ${NP}</span><span class="note mono" id="gcount">${a}/${NQ} answered</span></div><div class="progress"><i id="gbar" style="width:${a/NQ*100}%"></i></div>
+  <div class="pager">${Array.from({length:NP},(_,i)=>i).map(i=>{const n=S.g.slice(i*PER,i*PER+PER).filter(v=>v!=null).length;return `<button data-gp="${i}" aria-current="${i===p}">${i*PER+1}–${i*PER+PER} <small>${n}/${PER}</small></button>`}).join("")}</div></div>
+  <div class="card" style="padding-block:4px">${Q.slice(start,start+PER).map((q,j)=>{const qi=start+j;return `<div class="q-item"><p><span class="n">${qi+1}</span>${esc(q)}</p><div class="scale" role="radiogroup" aria-label="Statement ${qi+1}">${SCALE.map((lab,k)=>`<button role="radio" aria-checked="${S.g[qi]===k+1}" data-rate="${qi}" data-v="${k+1}" aria-label="${k+1}, ${lab}"><b>${k+1}</b><small>${lab}</small></button>`).join("")}</div></div>`}).join("")}</div>
+  <div class="row" style="justify-content:space-between">${p>0?`<button class="btn" data-gp="${p-1}">Previous page</button>`:"<span></span>"}${p<NP-1?`<button class="btn primary" data-gp="${p+1}">Next page</button>`:`<button class="btn primary" data-go="heart">On to Heart</button>`}</div>
+  </section>`;
+}
+function updateGiftProgress(){const a=answered();const c=$("#gcount"),b=$("#gbar");if(c)c.textContent=a+"/"+NQ+" answered";if(b)b.style.width=a/NQ*100+"%";
+  document.querySelectorAll("[data-gp][aria-current]").forEach(btn=>{const i=+btn.dataset.gp;btn.querySelector("small").textContent=S.g.slice(i*PER,i*PER+PER).filter(v=>v!=null).length+"/"+PER})}
+function vHeart(){
+  return `<section data-view>
+  <div class="stack"><span class="eyebrow">H · Heart</span><h2>Heart</h2></div>
+  ${about("What do I have a passion for and love to do?",
+   ["Your heart is your passion. It is usually explored in three areas: the <strong>people</strong> you love to serve, the <strong>causes</strong> that stir you, and the <strong>role</strong> you love to play.","God-given desires often point to where you will serve with the most joy and endurance."],
+   ["Before checking boxes, ask yourself: What drives me? What keeps me awake at night? Who do I most want to help, and why?","Check every group of people you would like to serve, every issue you feel strongly about, and the kinds of things you love to do.","Mark your top 3 in each of the three areas."],
+   "Psalm 37:4 · Philippians 2:13")}
+  <div class="card stack"><h3>People I would most like to serve</h3>${checklist(PEOPLE,"people","peopleO","topPeople")}</div>
+  <div class="card">${topBlock("Top 3 people","people","peopleO","topPeople")}</div>
+  <div class="card stack"><h3>Issues and causes I feel most strongly about</h3>${checklist(CAUSES,"causes","causesO","topCauses")}</div>
+  <div class="card">${topBlock("Top 3 issues and causes","causes","causesO","topCauses")}</div>
+  <div class="card stack"><div class="stack" style="gap:2px"><h3>What I love to do (role)</h3><p class="note">Complete the sentence \u201cI love to…\u201d Check the ones that energize you most.</p></div>${checklist(HROLES.map(x=>[x[0],x[1]]),"hrole","hroleO","topHRole",true)}</div>
+  <div class="card">${topBlock("Top 3 roles","hrole","hroleO","topHRole")}</div>
+  <div class="row" style="justify-content:flex-end"><button class="btn primary" data-go="abilities">On to Abilities</button></div>
+  </section>`;
+}
+function vAbil(){
+  return `<section data-view>
+  <div class="stack"><span class="eyebrow">A · Abilities</span><h2>Abilities</h2></div>
+  ${about("What natural talents and skills do I have?",
+   ["Abilities are the natural talents and learned skills you've discovered and developed over your lifetime.","Unlike spiritual gifts, anyone can have them. But God is just as pleased when you use a learned ability to serve Him as when you use a spiritual gift."],
+   ["Check the abilities that best describe you. Don't overthink it.","Choose your top 3. Your results will also show which category of abilities you checked most.","Name which of them could be most useful in ministry."],
+   "Exodus 31:1–6 · Colossians 3:23")}
+  <div class="card stack">${checklist([...ABIL].sort((a,b)=>a[0].localeCompare(b[0])),"abil","abilO","topAbil",true)}<div class="other"><label class="muted" for="abilLang">Languages you speak or write</label><input type="text" id="abilLang" data-field="abilLang" value="${esc(S.abilLang)}" placeholder="e.g. Spanish, Korean"></div></div>
+  <div class="card stack">${topBlock("My top 3 abilities","abil","abilO","topAbil")}
+    <div class="kv"><label class="k" for="abilUse">Of these, which could be most useful in ministry?</label><textarea id="abilUse" data-field="abilUse" rows="2" placeholder="e.g. Production, for running sound at Sunday Gatherings">${esc(S.abilUse)}</textarea></div></div>
+  <div class="row" style="justify-content:flex-end"><button class="btn primary" data-go="personality">On to Personality</button></div>
+  </section>`;
+}
+function meter(t,lo,hi){if(t==null)return `<p class="empty">Answer all six to see where you land.</p>`;const pct=(t-6)/18*100;return `<div class="meter"><span>${lo}</span><div class="bar"><i style="left:${pct}%"></i></div><span>${hi}</span></div><p class="note mono" style="text-align:center">Score ${t} of 24 → <strong style="color:var(--ink)">${t<=15?lo:hi}</strong></p>`}
+function persBlock(title,items,key,lo,hi){
+  return `<div class="card stack"><h3>${title}</h3><div class="pers">${items.map(([q,a,b],i)=>`<div class="pq"><span class="note">${q}:</span><div class="poles"><span>${a}</span><div class="seg" role="radiogroup" aria-label="${esc(q)}">${[1,2,3,4].map(v=>`<button role="radio" aria-checked="${S[key][i]===v}" data-seg="${key}:${i}" data-v="${v}">${v}</button>`).join("")}</div><span>${b}</span></div></div>`).join("")}</div>${meter(total(S[key]),lo,hi)}</div>`;
+}
+function vPers(){
+  const n=mbAnswered();
+  return `<section data-view>
+  <div class="stack"><span class="eyebrow">P · Personality</span><h2>Personality type</h2></div>
+  ${about("Where does my personality best suit me to serve?",
+   ["“Like stained glass, our different personalities reflect God's light in many colors and patterns.” Rick Warren","This section uses the four Myers-Briggs-style preferences: where you get your energy (E/I), how you take in information (S/N), how you make decisions (T/F), and how you approach your world (J/P). Together they form a four-letter type."],
+   ["For each of the 36 questions, choose the option that fits you best, even if both fit a little.","Answer as you really are, not as you think you should be. Go with your first instinct.","There are no right answers. Every type serves the body of Christ."],
+   "Psalm 139:13–14 · Romans 12:4–5")}
+  <div class="stack" style="gap:8px"><div class="row" style="justify-content:space-between"><span class="note">36 questions</span><span class="note mono" id="mbcount">${n}/${MB.length} answered</span></div><div class="progress"><i id="mbbar" style="width:${n/MB.length*100}%"></i></div></div>
+  <div class="card" style="padding-block:4px">${MB.map((q,i)=>`<div class="q-item"><p><span class="n">${i+1}</span>${esc(q.q)}…</p><div class="mbopts" role="radiogroup" aria-label="Question ${i+1}">${[[q.a,q.at],[q.b,q.bt]].map(([L,t])=>`<button role="radio" aria-checked="${S.mb[i]===L&&(S.mb[i]!==null)}" data-mb="${i}" data-v="${L}">${esc(t)}</button>`).join("")}</div></div>`).join("")}</div>
+  <p class="note">This is an original Myers-Briggs-style questionnaire for self-reflection. It is not the official MBTI® instrument.</p>
+  <div class="row" style="justify-content:flex-end"><button class="btn primary" data-go="experiences">On to Experiences</button></div>
+  </section>`;
+}
+function mbBarsHTML(){
+  const c=mbScores();
+  return `<div class="stack" style="gap:12px">${Object.entries(MBDIM).map(([k,[a,an,b,bn,label]])=>{const ta=c[a],tb=c[b],win=ta>tb?a:b;return `<div class="stack" style="gap:4px"><span class="note">${label}: <span${win===a?' style="color:var(--ink);font-weight:600"':""}>${an}</span> or <span${win===b?' style="color:var(--ink);font-weight:600"':""}>${bn}</span></span><div class="mbbar"><span class="${win===a?"w":""}">${a} <b class="mono">${ta}</b></span><div class="cbar" style="transform:scaleX(-1)"><span style="width:${ta/9*100}%;background:${win===a?"var(--accent)":"var(--line)"}"></span></div><div class="cbar"><span style="width:${tb/9*100}%;background:${win===b?"var(--accent)":"var(--line)"}"></span></div><span class="${win===b?"w":""}" style="text-align:right"><b class="mono">${tb}</b> ${b}</span></div></div>`}).join("")}</div>`;
+}
+function vExp(){
+  const sec=(n,title,note,body)=>`<div class="card stack"><div class="stack" style="gap:2px"><span class="eyebrow">${n}</span><h3>${title}</h3>${note?`<p class="note">${note}</p>`:""}</div>${body}</div>`;
+  return `<section data-view>
+  <div class="stack"><span class="eyebrow">E · Experiences</span><h2>Experiences</h2></div>
+  ${about("What key relationships, successes, or painful experiences have shaped me?",
+   ["God uses everything you have walked through, from school and work to serving and hard seasons, to prepare you to help others.","Don't minimize the ordinary experiences. God uses them all."],
+   ["As you look over each category, ask God to help you see which experiences He wants to use.","Check all that apply in the five categories below.","Past life experiences are personal. Only check what you're comfortable including in your results.","Finish with the reflection question at the bottom."],
+   "Romans 8:28 · 2 Corinthians 1:3–4")}
+  ${sec("1","Educational experiences","",checklist(EDU,"edu","eduO","",true))}
+  ${sec("2","Work experiences","",checklist(JOBS,"job","jobO","",false))}
+  ${sec("3","Spiritual experiences","",checklist(SPIRIT,"spirit",null,"",true))}
+  ${sec("4","Serving experiences","Age groups you've served and team roles you've filled.",`<div class="stack" style="gap:8px"><span class="k" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600">Age groups</span>${checklist(AGES,"serveAge",null,"",false)}</div><div class="stack" style="gap:8px"><span class="k" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600">Team roles</span>${checklist(ROLES,"serveRole",null,"",true)}</div>`)}
+  ${sec("5","Past life experiences","These are the experiences God most often uses to build credibility and compassion in ministry.",checklist(LIFE,"life","lifeO","",false))}
+  <p class="verse" style="max-width:62ch">“In all things God works for the good of those who love him, who have been called according to his purpose.” <span class="muted" style="font-family:var(--f-body);font-size:.85rem">Romans 8:28 NIV</span></p>
+  <div class="card stack"><span class="eyebrow">Reflection</span><label for="expUse"><h3>Which experience from any category do you sense God most wanting to use in ministry?</h3></label><textarea id="expUse" data-field="expUse" rows="3" placeholder="e.g. Leading a small group in college, and walking through grief after losing my dad">${esc(S.expUse)}</textarea></div>
+  <div class="row" style="justify-content:flex-end"><button class="btn primary" data-go="results">See my results</button></div>
+  </section>`;
+}
+const expRows=()=>[["Education",pool("edu","eduO")],["Work",pool("job","jobO")],["Spiritual",S.spirit],["Served ages",S.serveAge],["Serving roles",S.serveRole],["Life",pool("life","lifeO")]];
+const ol=(a,empty)=>a.filter(Boolean).length?`<ol class="ol">${a.filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:`<p class="empty">${empty}</p>`;
+function vResults(){
+  const a=answered(),s=sums(),r=ranks(),top=topGifts(),done=a===NQ;
+  const mt=mbType();
+  const max=Math.max(...s.map(x=>x.t),1);
+  return `<section data-view>
+  <div class="stack"><span class="eyebrow">Results</span><h2>${S.name?esc(S.name)+"'s S.H.A.P.E.":"Your S.H.A.P.E."}</h2>
+  ${done?"":`<p class="muted">You've answered ${a} of ${NQ} gift statements. Scores below are provisional until all ${NQ} are done, and A/B/C ranks appear only then.</p>`}</div>
+  <div class="hero" style="align-items:start">
+    <div class="card stack"><h3>Top 3 spiritual gifts</h3>
+      ${top.length?`<ul class="toplist">${top.map((x,k)=>`<li><span class="sw" style="background:${giftHue(x.i)}">${k+1}</span><div><strong>${esc(GIFTS[x.i][0])}</strong><p class="note" style="color:var(--ink)">${esc(GIFTS[x.i][1])}</p><span class="ref">${esc(GIFTS[x.i][2])}</span>${CAUTION[GIFTS[x.i][0]]?`<div class="watch"><p><strong style="color:var(--ruby)">Shadow side:</strong> ${esc(CAUTION[GIFTS[x.i][0]])}</p>${CAUTION_X[GIFTS[x.i][0]]?`<p><strong>Why it happens:</strong> ${esc(CAUTION_X[GIFTS[x.i][0]][0])}</p><p><strong>A healthy practice:</strong> ${esc(CAUTION_X[GIFTS[x.i][0]][1])}</p>`:""}</div>`:""}</div><span class="sc">${x.t}<span class="muted">/${MAXS}</span></span></li>`).join("")}</ul>`+`<div class="kv" style="border-top:1px solid var(--line);padding-top:12px"><label class="k" for="giftUse">Reflection</label><p class="note" style="color:var(--ink)">After prayer, I sense that God wants me to use my spiritual gifts to serve Christ's body by:</p><textarea id="giftUse" data-field="giftUse" rows="3" placeholder="e.g. hosting newcomers in my home and helping our Lifegroup run smoothly">${esc(S.giftUse)}</textarea></div>`:`<p class="empty">Answer the gift statements to see your top gifts.</p><button class="btn primary" data-go="gifts">Start the test</button>`}
+    </div>
+    <div>${windowHTML()}</div>
+  </div>
+  ${giftsActionHTML()}
+  ${fiveHTML()}
+  <div class="card stack" style="border-color:var(--accent)"><div class="row" style="justify-content:space-between"><div class="stack" style="gap:4px"><span class="eyebrow">Printable report</span><h3>Download your S.H.A.P.E. report</h3><p class="note">A PDF with your top gifts, a summary of every section, the written analysis below, and a chart of all 16 gifts.</p></div></div>
+    <div class="row"><button class="btn primary" id="pdfBtn" ${top.length?"":"disabled"}>Download PDF report</button></div></div>
+  <div class="card stack" style="gap:18px"><h3>Analysis</h3>${analysisHTML()}</div>
+  <div class="res-grid">
+    ${heartHTML()}
+    <div class="card kv" style="grid-column:1/-1"><span class="k">Abilities</span>${S.topAbil.length?`<ol class="ol">${S.topAbil.map(x=>`<li><strong>${esc(abLabel(x))}</strong>${ABIL_DESC[x]?`<span class="note"> · ${esc(ABIL_DESC[x])}</span>`:""}</li>`).join("")}</ol>`:`<p class="empty">Not chosen yet</p>`}${abilCatText()?`<p class="note" style="margin-top:6px"><strong style="color:var(--ink)">Strongest category:</strong> ${esc(abilCatText())}</p>`:""}${S.abilUse?`<p class="note" style="margin-top:6px"><strong style="color:var(--ink)">Most useful in ministry:</strong> ${esc(S.abilUse)}</p>`:""}</div>
+    ${abilCatHTML()}
+    <div class="card stack" style="grid-column:1/-1;gap:14px"><span class="eyebrow">Personality type</span>${mt?`<div class="res-grid" style="gap:18px"><div class="stack" style="gap:8px"><p style="font-family:var(--f-display);font-size:2rem;line-height:1;letter-spacing:.04em">${mt}</p><p style="font-weight:600">${MBTYPES[mt][0]}</p><p style="font-size:.95rem">${MBTYPES[mt][1]}</p>
+   <div class="kv"><span class="k">Your four letters</span><ul class="ol" style="list-style:none;padding:0;display:grid;gap:4px">${mbLetters(mt).map(x=>`<li style="font-size:.92rem"><strong>${x.L} · ${x.name}:</strong> ${x.desc.charAt(0).toLowerCase()+x.desc.slice(1)}.</li>`).join("")}</ul></div></div>${mbBarsHTML()}</div>
+   <div class="res-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+    <div class="kv"><span class="k">With people</span><p style="font-size:.93rem">${MBX[mt].people}</p></div>
+    <div class="kv"><span class="k">On a team</span><p style="font-size:.93rem">${MBX[mt].team}</p></div>
+    <div class="kv"><span class="k">Connecting with God</span><p style="font-size:.93rem">You may feel closest to God through ${MBX[mt].god.charAt(0).toLowerCase()+MBX[mt].god.slice(1)}</p></div>
+    <div class="kv"><span class="k">Where you may thrive</span><p style="font-size:.93rem">${MBTYPES[mt][2].replace(/^./,c=>c.toUpperCase())}.</p></div>
+   </div>
+   <p class="note">Close scores (5 to 4) mean you can likely flex either way on that pair. Your type describes how you're wired, not who you are. This is an original Myers-Briggs-style questionnaire, not the official MBTI® instrument.</p>
+   <p class="note"><strong style="color:var(--ink)">Source:</strong> The four preferences and 16 types come from the Myers-Briggs framework developed by Isabel Briggs Myers and Katharine Cook Briggs. The type descriptions here were written for this assessment, with a ministry focus. For the official descriptions of each type, see <a href="https://www.mbtionline.com/mbti-types/all-about-the-myers-briggs-types" target="_blank" rel="noopener" style="color:var(--accent)">The Myers-Briggs Company</a> and the <a href="https://www.myersbriggs.org/about-us/" target="_blank" rel="noopener" style="color:var(--accent)">Myers &amp; Briggs Foundation</a>.</p>`:`<p class="empty">Not finished yet (${mbAnswered()} of ${MB.length} answered)</p>`}</div>
+    <div class="card kv" style="grid-column:1/-1"><span class="k">Experiences</span>${expRows().filter(r=>r[1].length).length?`<div class="stack" style="gap:6px">${expRows().filter(r=>r[1].length).map(([k,v])=>`<p style="font-size:.93rem"><strong>${k}:</strong> ${esc(v.join(", "))}</p>`).join("")}</div>`:`<p class="empty">Not filled in yet</p>`}${S.expUse.trim()?`<p class="note" style="margin-top:6px"><strong style="color:var(--ink)">Most wants to use:</strong> ${esc(S.expUse)}</p>`:""}</div>
+
+  </div>
+  <div class="card stack"><span class="eyebrow">Share with your Lifegroup</span><p class="note">Copy a plain-text summary of your results to paste into a message or notes.</p><div class="row"><button class="btn primary" id="copyBtn">Copy summary</button></div><textarea id="sumText" rows="6" readonly hidden></textarea></div>
+  <div class="about" style="grid-template-columns:1fr">
+    <p class="q">A low score isn't a verdict</p>
+    <div class="stack" style="gap:10px;max-width:68ch">
+      <p>This test asks about what you've already experienced. If you've never been somewhere a gift is used, such as praying for someone's healing, sharing your faith or teaching a class, you'll naturally score low on it. That doesn't mean you lack the gift. It may simply mean you haven't had the opportunity yet.</p>
+      <p>Paul writes, “Pursue love, and earnestly desire the spiritual gifts” (1 Corinthians 14:1, ESV). Notice two things. Love comes first, because gifts without love mean nothing (1 Corinthians 13). And gifts are something to desire and ask God for, not a fixed ranking of what you're good at. God gives them as He chooses, and He invites you to ask.</p>
+      <p>So your lowest scores aren't failures. They may be the places God wants to grow you next.</p>
+    </div>
+    <div><h4>Try this</h4><ol><li>Pick one gift from the lower half of your list.</li><li>Ask God about it in prayer this week.</li><li>Look for one chance to try it, in your Lifegroup or on the trip, and see what happens.</li></ol></div>
+  </div>
+  <div class="card stack"><h3>All 16 spiritual gifts</h3>
+  <div class="tbl-wrap"><table><thead><tr><th>Gift / talent</th><th style="text-align:right">Sum</th><th></th><th>Rank</th></tr></thead><tbody>
+  ${GIFTS.map((g,i)=>({g,i,t:s[i].t})).sort((x,y)=>y.t-x.t).map(({g,i,t})=>`<tr><td>${esc(g[0])}</td><td class="num">${t}</td><td style="width:35%"><span class="mini" style="width:${t/max*100}%;background:${giftHue(i)}"></span></td><td style="font-family:var(--f-display)">${r[i]||""}</td></tr>`).join("")}
+  </tbody></table></div>
+  <p class="note">This test was written by people, not by God, and is imperfect. Treat it as a starting point in a lifelong discovery, confirmed by the Body of Christ and the fruit you see. Spiritual Gifts Survey from Saddleback Church.</p></div>
+  ${callingHTML()}
+  <div class="card stack"><h3>Start over</h3><p class="note">Clears every answer saved in this browser.</p><div id="resetZone"><button class="btn" id="resetBtn">Reset all answers</button></div></div>
+  </section>`;
+}
+const joinList=a=>a.length<=1?(a[0]||""):a.length===2?a.join(" and "):a.slice(0,-1).join(", ")+", and "+a[a.length-1];
+function personalityLabel(){const t=mbType();return t?`${t} (${MBTYPES[t][0]})`:null}
+function analysis(){
+  const top=topGifts(3),out=[];
+  if(!top.length)return null;
+  const names=top.map(x=>GIFTS[x.i][0].split(" /")[0].split(" (")[0]);
+  const cats={};top.forEach(x=>{cats[CAT[x.i]]=(cats[CAT[x.i]]||0)+1});
+  const lead=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+  const spread=top.length>1?top[0].t-top[top.length-1].t:0;
+  const nm=S.name?S.name.split(" ")[0]:"You";
+  // Pattern
+  let p=`${nm==="You"?"Your":nm+"'s"} strongest gift is ${names[0]} (${top[0].t} of ${MAXS})`+(names.length>1?`, followed by ${joinList(names.slice(1))}.`:".");
+  p+=` ${lead[0][1]>=2?`${lead[0][1]} of your top three are ${lead[0][0].toLowerCase()} gifts. ${CATDESC[lead[0][0]]}`:`Your top three span several kinds of gifts, which points to a versatile, well-rounded way of serving.`}`;
+  if(lead[1]&&lead[1][1]>=2)p+=` A secondary thread of ${lead[1][0].toLowerCase()} gifts (${lead[1][1]} of three) adds depth: ${CATDESC[lead[1][0]].charAt(0).toLowerCase()+CATDESC[lead[1][0]].slice(1)}`;
+  p+= spread<=2&&top.length===3?" The top scores sit close together, so treat these three as a cluster rather than a strict ranking.":spread>=6?` ${names[0]} stands well above the rest and is the clearest place to start.`:"";
+  if(answered()<NQ)p+=` These results are provisional: ${NQ-answered()} statements are still unanswered.`;
+  out.push(["Your gift pattern",p]);
+  // Serve
+  out.push(["Where you might serve",top.slice(0,3).map(x=>`${names[top.indexOf(x)]}: ${SERVE[x.i]}.`).join("\n")]);
+  // Heart + abilities
+  const hp=S.topPeople,hc=S.topCauses,ab=S.topAbil.map(abLabel);
+  if(hp.length||hc.length||ab.length||S.topHRole.length){
+    let h="";
+    if(S.topHRole.length)h+=`You love to ${joinList(S.topHRole.map(x=>HROLE_VERB[x]||x.toLowerCase()))}. `;
+    if(hp.length||hc.length)h+=`Your heart is drawn ${hp.length?`toward ${joinList(hp.map(x=>x.toLowerCase()))}`:""}${hp.length&&hc.length?" and ":""}${hc.length?`to the causes of ${joinList(hc.map(x=>x.toLowerCase()))}`:""}. `;
+    if(ab.length)h+=`Your top abilities (${joinList(ab)}) are the tools you bring. `;
+    {const t=abilCats().top;if(t.length)h+=`Most of the abilities you checked fall under ${joinList(t.map(x=>x.g))}, which points to where you naturally contribute. `;}
+    if(S.abilUse)h+=`For ministry, you named this as most useful: ${S.abilUse.trim().replace(/\.$/,"")}. `;
+    h+=`Look for the place where these overlap with your gift of ${names[0]}`+(hp[0]?`: for example, exercising ${names[0]} among ${hp[0].toLowerCase()}`:"")+(ab[0]?`, with ${ab[0]} as the practical way you contribute`:"")+".";
+    out.push(["Heart and abilities",h]);
+  }
+  const pl=personalityLabel();
+  if(pl){const t=mbType(),c=mbScores(),close=Object.values(MBDIM).filter(([a,,b])=>Math.abs(c[a]-c[b])<=1).map(([a,,b])=>a+"/"+b);
+    out.push(["Personality",`Your personality type is ${t}, ${MBTYPES[t][0].toLowerCase()}. ${MBTYPES[t][1]} ${MBX[t].people} On a team, ${MBX[t].team.charAt(0).toLowerCase()+MBX[t].team.slice(1)} You may thrive in ${MBTYPES[t][2]}.${close.length?` Your ${joinList(close)} ${close.length>1?"scores are":"score is"} close, so you can likely flex either way there.`:""} Your type describes how you're wired, not who you are or what you're limited to.`]);}
+  const lf=pool("life","lifeO"),jb=pool("job","jobO"),sr=S.serveRole,sa=S.serveAge;
+  if(lf.length||jb.length||sr.length||sa.length||S.expUse.trim()){
+    let e="";
+    if(S.expUse.trim())e+=`You sense God most wanting to use this: ${S.expUse.trim().replace(/\.$/,"")}. `;
+    if(lf.length)e+=`God often uses what we have walked through. Your experience with ${joinList(lf.map(x=>x.toLowerCase()))} can give you credibility and compassion with people facing the same thing. `;
+    if(sr.length||sa.length)e+=`Your serving history (${[sr.length?"roles: "+sr.join(", "):"",sa.length?"age groups: "+sa.join(", "):""].filter(Boolean).join("; ")}) shows where you've already seen fruit. `;
+    if(jb.length)e+=`Your background in ${joinList(jb)} brings skills the church can use directly.`;
+    out.push(["Experiences",e.trim()]);
+  }
+  out.push(["Next steps",["Share these results with your Lifegroup leader or a mentor and ask whether they see the same gifts in you.",`Try one serving opportunity in the next month that uses your gift of ${names[0]}${names[1]?` or ${names[1]}`:""}.`,"Read the Scripture passages listed with your top gifts and pray about how God wants you to use them.","Retake the assessment in a year. Gifts become clearer as they are exercised and affirmed by others."].map((x,i)=>`${i+1}. ${x}`).join("\n")]);
+  return out;
+}
+function analysisHTML(){
+  const a=analysis();if(!a)return `<p class="empty">Answer the gift statements to generate your analysis.</p>`;
+  return a.map(([h,t])=>`<div class="stack" style="gap:6px"><span class="k" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600">${h}</span>${t.split("\n").map(l=>`<p style="max-width:68ch">${esc(l)}</p>`).join("")}</div>`).join("")+(false&&S.ai?`<div class="stack" style="gap:6px;border-top:1px solid var(--line);padding-top:14px"><span class="k" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600">Personal reflection</span>${S.ai.split(/\n+/).map(l=>`<p style="max-width:68ch">${esc(l)}</p>`).join("")}</div>`:"");
+}
+
+/* PDF report */
+const RGB={"--cobalt":[42,79,184],"--ruby":[179,38,62],"--amber":[208,138,18],"--emerald":[29,138,90],"--violet":[107,63,168],"--teal":[20,128,138]};
+const giftRGB=i=>RGB[["--cobalt","--ruby","--amber","--emerald","--violet","--teal"][(i*5)%6]];
+function buildPDF(){
+  const {jsPDF}=window.jspdf;let DRY=false;let d=new jsPDF({unit:"pt",format:"letter"});
+  const W=612,M=54,CW=W-2*M,H=792;let y=M;
+  const ink=[20,20,20],mut=[94,94,90],line=[216,214,208];
+  const need=h=>{if(DRY)return;if(y+h>H-M){d.addPage();y=M}};
+  const text=(t,size,opt={})=>{d.setFont(opt.font||"helvetica",opt.style||"normal");d.setFontSize(size);d.setTextColor(...(opt.color||ink));
+    const lines=d.splitTextToSize(String(t),opt.w||CW);const lh=size*1.4;lines.forEach(l=>{need(lh);d.text(l,opt.x||M,y+size);y+=lh})};
+  const label=t=>{need(30);y+=8;text(t.toUpperCase(),8.5,{style:"bold",color:mut});y+=2};
+  const head=(L,title,c,sub)=>{need(40);y+=6;d.setFillColor(...c);d.roundedRect(M,y,24,24,3,3,"F");d.setTextColor(255,255,255);d.setFont("helvetica","bold");d.setFontSize(14);d.text(L,M+12,y+17,{align:"center"});
+    d.setTextColor(...ink);d.setFont("helvetica","bold");d.setFontSize(15);d.text(title,M+34,y+12);if(sub){d.setFont("helvetica","normal");d.setFontSize(8.5);d.setTextColor(...mut);d.text(sub,M+34,y+23)}y+=34};
+  const rule=()=>{if(!DRY&&y+14>H-M){d.addPage();y=M;return}d.setDrawColor(...line);d.setLineWidth(.6);d.line(M,y+6,W-M,y+6);y+=14};
+  // header band
+  d.setFillColor(20,20,20);d.rect(0,0,W,96,"F");
+  const top=topGifts(3);
+  for(let k=0;k<7;k++){const c=giftRGB(top[k%Math.max(top.length,1)]?.i??k);d.setFillColor(...c);d.rect(W-M-7*14+k*14,30,11,36,"F")}
+  d.setTextColor(190,189,184);d.setFont("helvetica","bold");d.setFontSize(8);d.text("ANTIOCH FULLERTON",M,30);
+  d.setTextColor(255,255,255);d.setFont("helvetica","bold");d.setFontSize(24);d.text("S.H.A.P.E. Report",M,56);
+  d.setFont("helvetica","normal");d.setFontSize(10);d.setTextColor(200,199,194);
+  d.text(`${S.name||"Student"}  ·  ${new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"})}`,M,76);
+  y=124;
+  text("“For we are God’s masterpiece. He has created us anew in Christ Jesus, so that we can do the good things he planned for us long ago.” Ephesians 2:10 NLT",10,{font:"times",style:"italic",color:mut});
+  if(answered()<NQ){y+=4;text(`Note: ${answered()} of ${NQ} gift statements answered. Gift results are provisional.`,9,{color:[179,38,62]})}
+  rule();
+  // Top gifts
+  head("S","Spiritual gifts",[20,20,20],"Your top 3 from the gifts survey");
+  const r=ranks();
+  const colW=(CW-32-8)/2;
+  top.forEach((x,k)=>{const g=GIFTS[x.i][0],e=GIFTX[g]||[GIFTS[x.i][1],GIFTS[x.i][2],"","",""];
+    d.setFont("helvetica","normal");d.setFontSize(9.5);const dl=d.splitTextToSize(e[0],CW-32).length;d.setFontSize(8.5);
+    const cl=Math.max(...[2,3].map(j=>d.splitTextToSize(e[j]||"",colW-12).length));const bh=22+dl*13.3+16+30+cl*11.9+18;
+    need(bh);const c=giftRGB(x.i),tint=c.map(v=>Math.round(v+(255-v)*.85));d.setFillColor(...tint);d.setDrawColor(...c);d.setLineWidth(1.2);d.circle(M+11,y+12,10,"FD");d.setTextColor(...c);d.setFont("helvetica","bold");d.setFontSize(10.5);d.text(String(k+1),M+11,y+15.6,{align:"center"});
+    d.setFont("helvetica","bold");d.setFontSize(12);d.setTextColor(...ink);d.text(g,M+32,y+13);
+    d.setFont("helvetica","normal");d.setFontSize(10);d.text(`${x.t}/${MAXS}`,W-M,y+13,{align:"right"});y+=20;
+    text(e[0],9.5,{x:M+32,w:CW-32});text(e[1]+" (NIV)",9.5,{x:M+32,w:CW-32,font:"times",style:"italic",color:mut});y+=4;
+    const y0=y,bxh=18+cl*11.9+8;
+    GX_LABELS.forEach((h,j)=>{const bx=M+32+j*(colW+8);d.setFillColor(240,239,236);d.roundedRect(bx,y0,colW,bxh,3,3,"F");
+      d.setFont("helvetica","bold");d.setFontSize(7.5);d.setTextColor(20,20,20);d.text(h.toUpperCase(),bx+6,y0+11);
+      d.setFont("helvetica","normal");d.setFontSize(8.5);d.setTextColor(...ink);d.splitTextToSize(e[2+j]||"",colW-12).forEach((l,li)=>d.text(l,bx+6,y0+23+li*11.9))});
+    y=y0+bxh+14});
+  if(!top.length)text("Gift statements not yet answered.",10,{color:mut});
+  if(S.giftUse.trim()){y+=4;text("After prayer, I sense that God wants me to use my spiritual gifts to serve Christ's body by:",9,{color:mut,x:M+32,w:CW-32});text(S.giftUse.trim(),11,{font:"times",style:"italic",x:M+32,w:CW-32})}
+  // H.A.P.E. at a glance
+  d.addPage();y=M;d.setFont("helvetica","bold");d.setFontSize(20);d.setTextColor(...ink);d.text("Your S.H.A.P.E. at a glance",M,y+18);y+=30;
+  const LX=M+34,VX=M+160,VW=CW-160;
+  const row=(k,v,opt={})=>{const vals=(Array.isArray(v)?v:[v]).map(x=>String(x||"").trim()).filter(Boolean);if(!vals.length)return;
+    need(18);const sy=y;d.setFont("helvetica","bold");d.setFontSize(8);d.setTextColor(...mut);d.text(k.toUpperCase(),LX,y+10);
+    (opt.lines?vals:[vals.join(", ")]).forEach(t=>text(t,10,{x:VX,w:VW,...(opt.st||{})}));if(y<sy+15)y=sy+15;y+=3};
+  const quote=(lead,t)=>{if(!t)return;need(30);y+=2;text(lead,8.5,{x:LX,w:CW-34,color:mut});text(t,12,{font:"times",style:"italic",x:LX,w:CW-34});y+=4};
+  const empty=()=>text("Not completed yet.",10,{x:LX,color:mut});
+  const band=(L,title,c,sub,body,has)=>{
+    const real=d,y0=y;DRY=true;d=new Proxy(real,{get(t,k){if(["text","rect","roundedRect","circle","line","lines","addPage"].includes(k))return()=>{};const v=t[k];return typeof v==="function"?v.bind(t):v}});
+    head(L,title,c,sub);if(has)body();else empty();y+=4;const h=y-y0;d=real;DRY=false;y=y0;
+    if(y+h>H-M&&y>M+40){d.addPage();y=M}
+    head(L,title,c,sub);if(has)body();else empty();y+=4;rule()};
+  band("H","Heart",[20,20,20],"The people, causes and role you love",()=>{
+    row("People I love to serve",S.topPeople);row("Causes that stir me",S.topCauses);row("Role: I love to…",S.topHRole);
+    quote("Your heart in one sentence",heartStatement());
+  },S.topPeople.length||S.topCauses.length||S.topHRole.length);
+  band("A","Abilities",[20,20,20],"Natural talents and learned skills",()=>{
+    row("Top abilities",S.topAbil.map(x=>ABIL_DESC[x]?`${abLabel(x)}: ${ABIL_DESC[x]}`:abLabel(x)),{lines:true});
+    row("Strongest category",abilCatText());row("Most useful in ministry",S.abilUse);
+  },S.topAbil.length||S.abil.length);
+  band("P","Personality type",[20,20,20],"Myers-Briggs-style preferences",()=>{
+    const t=mbType();
+    row("Type",`${t} · ${MBTYPES[t][0]}`,{st:{style:"bold"}});row("In short",MBTYPES[t][1]);
+    row("Your four letters",mbLetters(t).map(x=>`${x.L} · ${x.name} (${x.a} ${x.sa}–${x.b} ${x.sb}): ${x.desc.charAt(0).toLowerCase()+x.desc.slice(1)}`),{lines:true});
+    row("With people",MBX[t].people);row("On a team",MBX[t].team);row("Connecting with God","You may feel closest to God through "+MBX[t].god.charAt(0).toLowerCase()+MBX[t].god.slice(1));
+    row("Where you may thrive",MBTYPES[t][2].replace(/^./,x=>x.toUpperCase())+".");
+    text("Source: the Myers-Briggs framework by Isabel Briggs Myers and Katharine Cook Briggs. Descriptions written for this assessment; official type descriptions at mbtionline.com/mbti-types and myersbriggs.org. Not the official MBTI instrument.",7.5,{x:LX,w:CW-34,color:mut});
+  },!!mbType());
+  band("E","Experiences",[20,20,20],"What God has used to shape you",()=>{
+    row("Education",pool("edu","eduO"));row("Work",pool("job","jobO"));row("Spiritual",S.spirit);
+    row("Serving roles",S.serveRole);row("Age groups served",S.serveAge);row("Life experiences",pool("life","lifeO"));
+    quote("The experience I sense God most wants to use",S.expUse.trim());
+  },pool("edu","eduO").length||pool("job","jobO").length||S.spirit.length||S.serveRole.length||S.serveAge.length||pool("life","lifeO").length||S.expUse.trim());
+  const drawShadow=()=>{if(!top.length)return;
+    y+=4;{d.setFont("helvetica","normal");d.setFontSize(10);const hNeed=40+top.slice(0,3).reduce((h,x)=>{const g=GIFTS[x.i][0],c=CAUTION_X[g]||["",""];return h+22+[CAUTION[g]||"","Why it happens: "+c[0],"A healthy practice: "+c[1]].reduce((a,t)=>a+d.splitTextToSize(t,CW-14).length*14+2,0)},0);need(hNeed)}
+    label("Shadow side: when your top gifts are overused");
+    top.slice(0,3).forEach(x=>{const g=GIFTS[x.i][0],c=CAUTION_X[g];need(60);d.setFont("helvetica","bold");d.setFontSize(10.5);d.setTextColor(...ink);d.text(g,M,y+10);y+=15;text("Shadow side: "+(CAUTION[g]||""),10,{x:M+14,w:CW-14,style:"bold",color:[179,38,62]});y+=2;if(c){text("Why it happens: "+c[0],10,{x:M+14,w:CW-14});y+=2;text("A healthy practice: "+c[1],10,{x:M+14,w:CW-14})}y+=6});
+  };
+  // Analysis
+  const a=analysis();
+  if(a){need(160);y+=10;d.setFont("helvetica","bold");d.setFontSize(20);d.setTextColor(...ink);d.text("Analysis",M,y+18);y+=34;
+    a.forEach(([h,t])=>{if(h==="Next steps")drawShadow();label(h);t.split("\n").forEach(l=>{text(l,10.5);y+=3})});
+    if(false&&S.ai){label("Personal reflection");S.ai.split(/\n+/).forEach(l=>{text(l,10.5);y+=3})}}
+  // fivefold
+  if(top.length){
+    const ft=fiveTop();
+    if(ft.length){
+      need(520);y+=4;label("Fivefold ministry (Ephesians 4:11–13)");text(FIVE_INTRO,9.5,{color:mut});y+=4;
+      const f=fiveScores(),cx=M+100,cy=y+100,R=72,ang=k=>(-90+k*72)*Math.PI/180,pt=(k,r)=>[cx+r*Math.cos(ang(k)),cy+r*Math.sin(ang(k))];
+      d.setDrawColor(...line);d.setLineWidth(.5);
+      [5,10,15,20,25].forEach(v=>{for(let k=0;k<5;k++){const a=pt(k,R*v/MAXS),b=pt((k+1)%5,R*v/MAXS);d.line(a[0],a[1],b[0],b[1])}});
+      for(let k=0;k<5;k++){const a=pt(k,R);d.line(cx,cy,a[0],a[1])}
+      const ps=f.map((x,k)=>pt(k,R*x.t/MAXS));
+      d.setFillColor(225,224,220);d.setDrawColor(20,20,20);d.setLineWidth(1.5);
+      d.lines(ps.slice(1).map((p,i)=>[p[0]-ps[i][0],p[1]-ps[i][1]]),ps[0][0],ps[0][1],[1,1],"FD",true);
+      ps.forEach(p=>{d.setFillColor(20,20,20);d.circle(p[0],p[1],2.4,"F")});
+      f.forEach((x,k)=>{const [lx,ly]=pt(k,R+16);const al=Math.abs(lx-cx)<6?"center":lx>cx?"left":"right";d.setFont("helvetica",ft.includes(x)?"bold":"normal");d.setFontSize(9);d.setTextColor(...ink);d.text(`${x.role} ${x.t}`,lx,ly+3,{align:al})});
+      const tx=M+280,tw=CW-280;let ty=y+20;
+      const ttxt=(t,sz,st,col)=>{d.setFont("helvetica",st||"normal");d.setFontSize(sz);d.setTextColor(...(col||ink));d.splitTextToSize(t,tw).forEach(l=>{d.text(l,tx,ty);ty+=sz*1.4})};
+      ttxt(`You lean most toward ${joinList(ft.map(x=>x.role))}.`,11,"bold");ty+=2;
+      ft.forEach(x=>{const e=FIVEX[x.role];ttxt(x.d,10);ty+=3;ttxt("What it looks like",8,"bold",mut);ty+=2;ttxt(e.looks,9.5);ty+=2;ttxt("How you equip others",8,"bold",mut);ty+=2;ttxt(e.equips,9.5);ty+=2;ttxt("On a trip team",8,"bold",mut);ty+=2;ttxt(e.trip,9.5);ttxt(e.ref,8.5,"normal",mut);ty+=6});
+      y=Math.max(cy+R+28,ty);
+      need(150);d.setFont("helvetica","bold");d.setFontSize(8);d.setTextColor(...mut);d.text("ALL FIVE",M,y+8);y+=14;
+      f.forEach(x=>{need(16);d.setFont("helvetica",ft.includes(x)?"bold":"normal");d.setFontSize(9.5);d.setTextColor(...ink);d.text(`${x.role}  ${x.t}/${MAXS}`,M,y+9);const sy=y;text(x.d+" On a trip: "+FIVEX[x.role].trip.charAt(0).toLowerCase()+FIVEX[x.role].trip.slice(1),9,{x:M+110,w:CW-110,color:mut});if(y<sy+14)y=sy+14});y+=6;
+    }
+  }
+  // chart of all gifts
+  d.addPage();y=M;d.setFont("helvetica","bold");d.setFontSize(20);d.setTextColor(...ink);d.text("All 16 spiritual gifts",M,y+18);y+=30;
+  text("Each bar is the sum of five statements, each rated 1–5 (total 5–25). Ranks A, B and C mark the highest totals.",9,{color:mut});y+=6;
+  const s=sums(),lx=M+150,bw=CW-150-40;
+  // axis ticks
+  [5,10,15,20,25].forEach(v=>{const x=lx+(v-5)/20*bw;d.setDrawColor(...line);d.setLineWidth(.4);d.line(x,y,x,y+16*20);d.setFontSize(7.5);d.setTextColor(...mut);d.text(String(v),x,y+16*20+10,{align:"center"})});
+  GIFTS.map((g,i)=>({g,i,t:s[i].t})).sort((p,q)=>q.t-p.t).forEach(({g,i,t},k)=>{const yy=y+k*20;
+    d.setFont("helvetica","normal");d.setFontSize(8.5);d.setTextColor(...ink);d.text(g[0],M,yy+10);
+    if(t>0){d.setFillColor(...giftRGB(i));d.rect(lx,yy+3,Math.max(1,(Math.max(t,5)-5)/20*bw),9,"F")}
+    d.setFontSize(8.5);d.text(String(t)+(r[i]?"  "+r[i]:""),lx+bw+6,yy+10)});
+  y+=16*20+24;
+  label("A low score isn't a verdict");
+  text("This test asks about what you've already experienced. If you've never been somewhere a gift is used, such as praying for someone's healing, sharing your faith or teaching a class, you'll naturally score low on it. That doesn't mean you lack the gift. It may simply mean you haven't had the opportunity yet.",9.5);y+=3;
+  text("Paul writes, “Pursue love, and earnestly desire the spiritual gifts” (1 Corinthians 14:1, ESV). Love comes first, because gifts without love mean nothing (1 Corinthians 13). And gifts are something to desire and ask God for, not a fixed ranking of what you're good at. Your lowest scores aren't failures. They may be the places God wants to grow you next.",9.5);y+=3;
+  text("Try this: pick one gift from the lower half of your list, ask God about it in prayer this week, and look for one chance to try it in your Lifegroup or on the trip.",9.5,{style:"bold"});y+=10;
+  text("This test was written by people, not by God, and is imperfect. Use it as a starting point, confirmed by the Body of Christ and the fruit you see. S.H.A.P.E. by Pastor Rick Warren; Spiritual Gifts Survey from Saddleback Church.",8.5,{color:mut});
+  if(top.length){need(150);y+=10;rule();d.setFont("helvetica","bold");d.setFontSize(18);d.setTextColor(...ink);d.text("Your draft calling statement",M,y+16);y+=28;
+    text(CALLING_DESC,9.5,{color:mut});y+=6;
+    d.setFillColor(240,239,236);const cl=d.splitTextToSize(callingText(),CW-28);d.setFont("times","italic");d.setFontSize(13);const ch=d.splitTextToSize(callingText(),CW-28).length*18.2+20;need(ch);d.roundedRect(M,y,CW,ch,4,4,"F");y+=12;text(callingText(),13,{font:"times",style:"italic",x:M+14,w:CW-28});y+=10;}
+  const n=d.getNumberOfPages();for(let p=1;p<=n;p++){d.setPage(p);d.setFont("helvetica","normal");d.setFontSize(8);d.setTextColor(...mut);d.text(`Page ${p} of ${n}`,W-M,H-28,{align:"right"});if(p>1)d.text(`S.H.A.P.E. Report · ${S.name||"Student"}`,M,H-28)}
+  return d.output("blob");
+}
+let DL=null;
+try{window.claude?.use?.("downloads")?.then(d=>{DL=d}).catch(()=>{})}catch(e){}
+function pdfName(){return `SHAPE Report - ${(S.name||"Student").replace(/[^\w\s-]/g,"").trim()||"Student"}.pdf`}
+function openPDFFallback(blob,btn,popup){
+  const url=URL.createObjectURL(blob),fn=pdfName();
+  let opened=false;
+  try{if(popup&&!popup.closed){popup.location.href=url;opened=true}}catch(e){}
+  if(!opened){try{const w=window.open(url,"_blank");opened=!!w}catch(e){}}
+  const card=btn.closest(".card");let box=card&&card.querySelector("#pdfFallback");
+  if(card&&!box){box=document.createElement("div");box.id="pdfFallback";box.className="watch";card.appendChild(box)}
+  if(box){box.innerHTML=`<strong>${opened?"Your report opened in a new tab.":"Your report is ready."}</strong><span>Open it below, then use your browser's Print or Share button to print or save it.</span><div class="row" style="margin-top:6px"><a class="btn primary" href="${url}" target="_blank" rel="noopener" style="text-decoration:none">Open PDF report</a><a class="btn" href="${url}" download="${fn}" style="text-decoration:none">Save file</a></div>`}
+  toast(opened?"Report opened in a new tab":"Report ready below");
+}
+async function downloadPDF(btn){
+  if(!window.jspdf){toast("The PDF tool didn't load. Check your connection and reload.");return}
+  btn.disabled=true;
+  /* No save permission here: open a blank tab now, while the tap still counts, so popup blockers allow it. */
+  let popup=null;if(!DL){try{popup=window.open("","_blank")}catch(e){}}
+  let blob=null;
+  try{blob=buildPDF();
+    if(!DL){openPDFFallback(blob,btn,popup);return}
+    await DL.save({filename:pdfName(),data:blob});toast("Report saved");
+  }catch(e){
+    if(e&&e.code==="declined"){toast("Download cancelled")}
+    else if(e&&e.code==="rate_limited"){toast("A save prompt is already open")}
+    else if(blob){openPDFFallback(blob,btn,popup)}
+    else{try{popup&&popup.close()}catch(_){};toast("Couldn't build the report. Try again.")}
+  }
+  finally{btn.disabled=false}
+}
+function summaryText(){
+  const top=topGifts(),r=ranks();
+  const L=(t,a)=>`${t}: ${a.filter(Boolean).length?a.filter(Boolean).join(", "):"—"}`;
+  return [`S.H.A.P.E. results${S.name?" for "+S.name:""}`,
+  L("Spiritual gifts",top.map((x,k)=>`${k+1}. ${GIFTS[x.i][0]} (${x.t}${r[x.i]?", "+r[x.i]:""})`)),
+  L("Gift reflection",[S.giftUse.trim()]),L("Fivefold leaning",fiveTop().map(x=>x.role)),L("Heart · People",S.topPeople),L("Heart · Causes",S.topCauses),L("Heart · Role",S.topHRole),L("Heart statement",[heartStatement()]),L("Abilities",[S.topAbil.map(abWithDesc).join("; ")]),L("Strongest ability category",[abilCatText()]),L("Ability most useful in ministry",[S.abilUse]),
+  `Personality type: ${personalityLabel()||"—"}`,
+  ...expRows().map(([k,v])=>L(k,v)),L("Experience to use",[S.expUse.trim()]),L("Calling statement",topGifts(1).length?[callingText()]:[])].join("\n");
+}
+document.addEventListener("click",e=>{
+  if(e.target.id==="callingReset"){S.calling="";save();const t=$("#calling");if(t)t.value=suggestedCalling();toast("Draft reset")}
+  if(e.target.id==="pdfBtn")downloadPDF(e.target);
+  if(e.target.id==="copyBtn"){const txt=summaryText();const ta=$("#sumText");
+    navigator.clipboard.writeText(txt).then(()=>toast("Summary copied")).catch(()=>{ta.hidden=false;ta.value=txt;ta.select();toast("Select and copy the text below")})}
+  if(e.target.id==="resetBtn"){$("#resetZone").innerHTML=`<div class="confirm"><span>Erase all answers?</span><button class="btn" id="resetYes" style="color:var(--ruby);border-color:var(--ruby)">Erase everything</button><button class="btn ghost" id="resetNo">Keep my answers</button></div>`}
+  if(e.target.id==="resetNo")render();
+  if(e.target.id==="resetYes"){S=blank();save();toast("All answers cleared");go("overview")}
+});
+
+function render(){
+  renderTabs();
+  $("#app").innerHTML={overview:vOverview,gifts:vGifts,heart:vHeart,abilities:vAbil,personality:vPers,experiences:vExp,results:vResults}[view]();
+}
+const h=(location.hash||"").slice(1);if(VIEWS.some(v=>v[0]===h))view=h;
+render();
+</script>
+
+</body></html>
